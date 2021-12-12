@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS and Local CSS-->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    
+
+  </head>
+  <body>
+    
+    <main class="d-flex flex-column align-items-center mt-5">
+        <div class="profilePic mb-4">
+            <img src="./assets/profileMain.png" alt="">
+        </div>
+        <h1>Iniciar Sesi&oacute;n</h1>
+        <div>
+            <form action="">
+                <div>
+                    <input type="text" id="inpUser">
+                    <label for="inpUser">Usuario</label>
+                </div>
+                <div>
+                    <input type="password" id="inpPassword">
+                    <label for="inpPassword">Contraseña</label>
+                </div>
+                <button>Login</button>
+            </form>    
+        </div>
+    </main>
+
+    <!-- Scripts references for node modules and libraries -->
+    <script defer src="../node_modules/@fortawesome/fontawesome-free/js/all.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        require('./renderer.js')
+    </script>
+  </body>
+</html>
