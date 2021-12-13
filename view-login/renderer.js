@@ -1,5 +1,6 @@
 const { ipcRenderer } = require('electron');
-const db = require('../database.js')
+const db = require('../database.js');
+const path = require('path');
 
 const inpUser = document.getElementById('inpUser');
 const inpPassword = document.getElementById('inpPassword');
@@ -13,9 +14,12 @@ const changeProfilePic = function(e){
     db.query(sql, function(err, result, fields){
         if(err) throw err;
         if(result.length >= 1){
-            var source = result[0].user;
-            imgProfile.src="./assets/profilePics/" + source + ".jpg";
+            var imgPath = path.join(__dirname, 'assets', 'profilePics') + '/' +result[0].user + '.jpg';
+            
+        }else{
+            var imgPath = path.join(__dirname, 'assets') + '/profileMain.png';
         }
+        imgProfile.src = imgPath;
     });
 }
 

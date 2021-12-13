@@ -10,11 +10,15 @@
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="d-flex flex-column align-items-center mt-5">
-      <div class="profilePic mb-4">
+      <div class="profilePic mb-4 mt-4">
         <img
           id="imgProfile"
           src="./assets/profileMain.png"
@@ -23,17 +27,37 @@
         />
       </div>
       <h1>Iniciar Sesi&oacute;n</h1>
-      <div>
-        <div>
-          <input type="text" id="inpUser" />
-          <label for="inpUser">Usuario</label>
+      <div class="dataFields mt-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Usuario"
+            aria-label="Usuario"
+            aria-describedby="basic-addon1"
+            id="inpUser"
+          />
         </div>
-        <div>
-          <input type="password" id="inpPassword" />
-          <label for="inpPassword">Contraseña</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+          </div>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Contraseña"
+            aria-label="Contraseña"
+            aria-describedby="basic-addon1"
+            id="inpPassword"
+          />
         </div>
-        <button id="btnLogin">Login</button>
+        
       </div>
+      <button id="btnLogin" class="btn btn-primary mb-4">Login</button>
+      <p class="mb-5">&copy; Athletic Center 2022</p>
     </main>
 
     <!-- Scripts references for node modules and libraries -->
