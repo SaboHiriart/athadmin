@@ -7,8 +7,8 @@ function createLoginWindow() {
         width: 450,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            contextIsolation: false
         },
         title: 'Athadmin',
         icon: path.join(__dirname, 'assets', 'icon.png'),
