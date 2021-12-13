@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain} = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 let loginWindow;
@@ -35,6 +35,7 @@ function createMainWindow(){
         title: 'Athadmin',
     });
     mainWindow.setTitle('Athadmin');
+    mainWindow.maximize();
     mainWindow.loadFile(path.join(__dirname, 'view-main/index.html'));
 }
 
