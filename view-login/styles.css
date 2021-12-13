@@ -12,8 +12,5 @@ main{
 .profilePic{
     background-color: #ffffff;
     border-radius: 50%;
-}
-
-.profilePic img{
-
+    width: 100px;
 }
