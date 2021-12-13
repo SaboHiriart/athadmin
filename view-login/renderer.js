@@ -1,4 +1,4 @@
-const dialog = require('electron').remote.dialog;
+const { ipcRenderer } = require('electron');
 const db = require('../database.js')
 
 const inpUser = document.getElementById('inpUser');
@@ -13,7 +13,6 @@ const changeProfilePic = function(e){
     db.query(sql, function(err, result, fields){
         if(err) throw err;
         if(result.length >= 1){
-            console.log(result);
             var source = result[0].user;
             imgProfile.src="./assets/profilePics/" + source + ".jpg";
         }
@@ -23,12 +22,6 @@ const changeProfilePic = function(e){
 //Función que valida que los campos estén llenos
 const dataValidate = function(){
     if(inpUser.value === ''){
-        dialog.showMessageBox({
-            title: 'Error en Credenciales',
-            buttons: ['OK'],
-            type: 'warning',
-            message: 'tesing'
-        })
         return false;
     }else if(inpPassword.value === ''){
         return false;
@@ -56,5 +49,13 @@ inpPassword.addEventListener('keypress', function(event){
 });
 
 btnLogin.onclick = function(){
-    dataValidate();
+    if(dataValidate() === true){
+        var sql = "SELECT * FROM users WHERE user='" + inpUser.value + "' AND password='" + inpPassword.value + "'";
+        db.query(sql, function(err, result, fields){
+            if(err) throw err;
+            if(result.length >= 1){
+                ipcRenderer.invoke("succesfullLogin")
+            }
+        });
+    }
 }
