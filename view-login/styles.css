@@ -1,29 +1,29 @@
-body{
-    background-image: url(./assets/wallpaper.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+body {
+  background-image: url(./assets/wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-main{
-    width: 80%;
-    margin-left: 10%;
-    background-color: #ffffff;
-    border-radius: 10px;
+main {
+  width: 80%;
+  margin-left: 10%;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
-.profilePic{
-    background-color: #ffffff;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    max-height: 120px;
+.profilePic {
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  max-height: 120px;
 }
 
-.profilePic img{
-    border-radius: 50%;
-    max-height: 120px;
+.profilePic img {
+  border-radius: 50%;
+  max-height: 120px;
 }
 
-.input-group input{
-    height: 30px !important;
+.input-group input {
+  height: 30px !important;
 }
