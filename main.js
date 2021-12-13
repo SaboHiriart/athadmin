@@ -1,8 +1,11 @@
-const { app, BrowserWindow} = require('electron');
+const { app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 
+let loginWindow;
+let mainWindow;
+
 function createLoginWindow() {
-    const win = new BrowserWindow({
+    loginWindow = new BrowserWindow({
         height: 580,
         width: 450,
         webPreferences: {
@@ -13,15 +16,15 @@ function createLoginWindow() {
         title: 'Athadmin',
         icon: path.join(__dirname, 'assets', 'icon.png'),
     });
-    win.setResizable(false);
-    win.setTitle('Athadmin');
+    loginWindow.setResizable(false);
+    loginWindow.setTitle('Athadmin');
     //win.removeMenu();
-    win.loadFile(path.join(__dirname, 'view-login/index.html'));
+    loginWindow.loadFile(path.join(__dirname, 'view-login/index.html'));
 }
 
 function createMainWindow(){
-    const mainWindow = new BrowserWindow({
-        height: 600,
+    mainWindow = new BrowserWindow({
+        height: 800,
         width: 800,
         webPreferences: {
             nodeIntegration: true,
@@ -45,7 +48,13 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-        console.log('hola mundos');
         createLoginWindow();
     }
+});
+
+//Funcion de escucha para incio de sesión
+ipcMain.handle('succesfullLogin', (event, obj) =>{
+    createMainWindow();
+    mainWindow.show();
+    loginWindow.close();
 });
