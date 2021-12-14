@@ -65,7 +65,11 @@ btnLogin.onclick = function () {
     db.query(sql, function (err, result, fields) {
       if (err) throw err;
       if (result.length >= 1) {
+        let data = {
+          user: inpUser.value
+        };
         ipcRenderer.invoke("succesfullLogin");
+        ipcRenderer.send('sendUser', data);
       }
     });
   }

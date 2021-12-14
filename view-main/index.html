@@ -1,135 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS and Local CSS-->
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
-    />
-    <link rel="stylesheet" href="./styles.css" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap core CSS -->
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link href="styles.css" rel="stylesheet" />
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+  <!-- Custom styles for this template -->
+</head>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="d-flex flex-row">
-      <div
-        class="d-flex flex-column flex-shrink-0 bg-dark"
-        style="width: 4.5rem"
-      >
-        <a
-          href="/"
-          class="d-block p-3 link-dark text-decoration-none"
-          title="Icon-only"
-          data-bs-toggle="tooltip"
-          data-bs-placement="right"
-        >
-          <svg class="bi" width="40" height="32">
-            <use xlink:href="#bootstrap" />
-          </svg>
-          <span class="visually-hidden">Icon-only</span>
-        </a>
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <li class="nav-item" id="btnUsuarios">
-            <a
-              href="#"
-              class="nav-link active py-3 border-bottom"
-              aria-current="page"
-              title="Usuarios"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <span style="color: white; font-size: 20px;"><i class="fas fa-users"></i></span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="#"
-              class="nav-link py-3 border-bottom"
-              aria-current="page"
-              title="Venta"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <span style="color: white; font-size: 20px;"><i class="far fa-money-bill-alt"></i></span>
-            </a>
-          </li>
-        </ul>
-        <div class="dropdown border-top">
-          <a
-            href="#"
-            class="
+<body>
+  <main>
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 200px">
+      <ul class="nav nav-tabs nav-pills flex-column mb-auto" id="tabs-Menu" role="tab-list">
+        <!-- Boton de Athletic Center -->
+        <li class="nav-item" role="presentation">
+          <a class="nav-link text-white" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" role="tab"
+            aria-controls="home" aria-selected="true" aria-current="page">
+            <span><i class="fas fa-home"></i></span>
+            Athletic Center
+          </a>
+        </li>
+        <hr/>
+
+        <!-- Dropdown Menu para usuarios-->
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+            <i class="far fa-plus-square mr-1"></i>Usuarios  
+          </button>
+          <div class="collapse" id="dashboard-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-light rounded">Overview</a></li>
+              <li><a href="#" class="link-light rounded">Weekly</a></li>
+              <li><a href="#" class="link-light rounded">Monthly</a></li>
+              <li><a href="#" class="link-light rounded">Annually</a></li>
+            </ul>
+          </div>
+        </li>
+        </li>
+      </ul>
+
+      <hr/>
+      <div class="dropdown">
+        <a href="#" class="
               d-flex
               align-items-center
-              justify-content-center
-              p-3
-              link-dark
-              text-decoration-none
+              text-white text-decoration-none
               dropdown-toggle
-              text-white
-            "
-            id="dropdownUser3"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/mdo.png"
-              alt="mdo"
-              width="24"
-              height="24"
-              class="rounded-circle"
-            />
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-dark text-small text-white shadow"
-            aria-labelledby="dropdownUser3"
-          >
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
+            " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
+          <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item" id="btnLogOut">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="b-example-divider tab-content" id="tab-content">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"></div>
+      <div class="tab-pane fade d-flex flex-column justify-content-center" id="users" role="tabpanel"
+        aria-labelledby="users-tab">
+        <h2 class="h1">USUARIOS</h2>
+        <div>
+          <h1>hola</h1>
         </div>
       </div>
-      <div class="b-example-divider tabcontent" id="tabUsuarios">
+    </div>
+  </main>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./sidebar.js"></script>
+  <script src="./renderer.js"></script>
+</body>
 
-      </div>
-      <div class="b-example-divider tabcontent" id="tabVentas">
-
-      </div>
-    </main>
-
-    <!-- Scripts references for node modules and libraries -->
-    <script
-      defer
-      src="../node_modules/@fortawesome/fontawesome-free/js/all.js"
-    ></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./sidebar.js"></script>
-    <script>
-      require("./renderer.js");
-    </script>
-  </body>
 </html>

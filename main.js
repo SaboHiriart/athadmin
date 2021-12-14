@@ -59,3 +59,9 @@ ipcMain.handle('succesfullLogin', (event, obj) =>{
     mainWindow.show();
     loginWindow.close();
 });
+
+ipcMain.handle('logOut', (event, obj) =>{
+    createLoginWindow();
+    loginWindow.show();
+    mainWindow.close();
+});
