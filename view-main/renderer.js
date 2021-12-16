@@ -1,8 +1,19 @@
 const { ipcRenderer } = require("electron");
 
-const btnUsuarios = document.getElementById("btnUsuarios");
-const btnLogout = document.getElementById("btnLogOut");
+const btnSubmenuUsers = document.getElementById("btnSubmenuUsers");
+const icoSubmenuUsers = document.getElementById("icoSubmenuUsers");
 
-btnLogout.onclick = function () {
-  ipcRenderer.invoke("logOut");
+var userExpand = false;
+
+btnSubmenuUsers.onclick = function () {
+  if (userExpand === false) {
+    icoSubmenuUsers.classList.remove("fa-plus-square");
+    icoSubmenuUsers.classList.add("fa-minus-square");
+    userExpand = true;
+  } else {
+    icoSubmenuUsers.classList.remove("fa-minus-square");
+    icoSubmenuUsers.classList.add("fa-plus-square");
+    userExpand = false;
+    console.log(userExpand);
+  }
 };

@@ -18,7 +18,7 @@ function createLoginWindow() {
     });
     loginWindow.setResizable(false);
     loginWindow.setTitle('Athadmin');
-    //loginWindow.removeMenu();
+    loginWindow.removeMenu();
     loginWindow.loadFile(path.join(__dirname, 'view-login/index.html'));
 }
 
