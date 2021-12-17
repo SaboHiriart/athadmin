@@ -26,18 +26,20 @@
             <span class="mr-2"><i id="icoSubmenuUsers" class="far fa-plus-square"></i></span>Usuarios
           </button>
           <div class="collapse submenu" id="submenuUsers">
-            <button class="btn bg-dark text-white mb-1 tablink" onclick="openTab(event, 'addUser')"><i class="fas fa-user-plus"></i> Agregar</button>
-            <button class="btn bg-dark text-white mb-1 tablink" onclick="openTab(event, 'searchUser')"><i class="fas fa-user-cog"></i> Consultar</button>
-            <button class="btn bg-dark text-white mb-1 tablink" onclick="openTab(event, 'modifyUser')"><i class="fas fa-user-edit"></i> Modificar</button>
+            <button class="btn bg-dark text-white mb-1 tablink" id="2" onclick="openTab(event, 'addUser')"><i class="fas fa-user-plus"></i> Agregar</button>
+            <button class="btn bg-dark text-white mb-1 tablink" id="3" onclick="openTab(event, 'searchUser')"><i class="fas fa-user-cog"></i> Consultar</button>
+            <button class="btn bg-dark text-white mb-1 tablink" id="4" onclick="openTab(event, 'modifyUser')"><i class="fas fa-user-edit"></i> Modificar</button>
           </div>
         </li>
       </ul>
     </div>
     <div class="panel-content">
+      <!-- TABS DE USUARIOS -->
       <div class="tabcontent" id="homePage">HOME PAGE</div>
       <div class="tabcontent" id="addUser">USER</div>
       <div class="tabcontent" id="searchUser">SEARCH</div>
       <div class="tabcontent" id="modifyUser">MODIFICAR</div>
+      <!-- TABS DE PUNTO DE VENTA -->
     </div>
   </main>
   <!-- Boostrap JS Bundle, Renderer JS And Sidebar JS -->
