@@ -2,7 +2,7 @@ const db = require("../database");
 
 const moduleValidate = function (idTab, callback) {
   var id_module = idTab;
-  var id_user = 2;
+  var id_user = 1;
   var sql =
     "SELECT * FROM user_privilege WHERE module_id=" +
     id_module +
@@ -37,18 +37,20 @@ function openTab(evt, tabName) {
   }
 
   moduleValidate(tabId, function (resultado) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
+    if(resultado === true){
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+  
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+  
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
     }
-
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
   });
 }
