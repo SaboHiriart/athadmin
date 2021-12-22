@@ -1,8 +1,16 @@
+const { ipcRenderer } = require("electron");
 const db = require("../database");
+
+var id_user = 1;
+
+ipcRenderer.on('userDataSender', function(event, arg) {
+  alert(arg);
+  id_user = arg;
+});
 
 const moduleValidate = function (idTab, callback) {
   var id_module = idTab;
-  var id_user = 1;
+  //console.log(idTab)
   var sql =
     "SELECT * FROM user_privilege WHERE module_id=" +
     id_module +
@@ -23,12 +31,15 @@ const moduleValidate = function (idTab, callback) {
 };
 
 window.onload = function () {
-  document.getElementById("homePage").style.display = "block";
+  openTab(event, 'homePage');
 };
 
 function openTab(evt, tabName) {
   var tabId;
-  if(tabName === 'addUser'){
+  if(tabName === 'homePage'){
+    tabId=1;
+  }
+  else if(tabName === 'addUser'){
     tabId = 2;
   }else if(tabName === 'searchUser'){
     tabId = 3;
@@ -43,14 +54,13 @@ function openTab(evt, tabName) {
       for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
       }
-  
       tablinks = document.getElementsByClassName("tablinks");
       for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
-  
       document.getElementById(tabName).style.display = "block";
-      evt.currentTarget.className += " active";
+      document.getElementById(tabName).classList.add("active");
+      document.getElementById(tabName).innerHTML = '<object type="text/html" data="./tabs/' + tabName +'/index.html" ></object>';
     }
   });
 }

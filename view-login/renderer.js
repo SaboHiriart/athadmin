@@ -68,8 +68,8 @@ btnLogin.onclick = function () {
         let data = {
           user: inpUser.value
         };
-        ipcRenderer.invoke("succesfullLogin");
-        ipcRenderer.send('sendUser', data);
+        var idUser = result[0].user_id;
+        ipcRenderer.invoke("succesfullLogin", idUser);
       }
     });
   }

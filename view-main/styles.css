@@ -61,10 +61,7 @@ hr{
   height: 100%;
 }
 
-/* HOMA PAGE CSS */
-#homePage{
-  background-image: url('./assets/home/wallpaper.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.tabcontent object{
+  width: 100%;
+  height: 100%;
 }

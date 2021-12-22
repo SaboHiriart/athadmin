@@ -1,5 +1,3 @@
-const { ipcRenderer } = require("electron");
-
 const btnSubmenuUsers = document.getElementById("btnSubmenuUsers");
 const icoSubmenuUsers = document.getElementById("icoSubmenuUsers");
 

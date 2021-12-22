@@ -1,0 +1,32 @@
+.tituloTab {
+  display: flex;
+  justify-content: center;
+}
+
+.camaraSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 330px;
+}
+
+.camara,
+.imagen {
+  width: 320px;
+  height: 240px;
+  background-color: black;
+}
+
+.fcoAddUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 0, 5%;
+    margin: 0 5%;
+}
+
+.fcoAddUser div{
+    width: 40%;
+}
