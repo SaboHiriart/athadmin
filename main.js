@@ -57,7 +57,9 @@ app.on('activate', () => {
 ipcMain.handle('succesfullLogin', (event, obj) =>{
     createMainWindow();
     mainWindow.show();
-    mainWindow.webContents.send('userDataSender', 'hahaha');
+    mainWindow.webContents.on('did-finish-load', ()=>{
+        mainWindow.webContents.send('userDataSender', obj);
+    })
     loginWindow.close();
 });
 
