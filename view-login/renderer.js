@@ -16,7 +16,7 @@ const changeProfilePic = function (e) {
       var imgPath =
         path.join(__dirname, "assets", "profilePics") +
         "/" +
-        result[0].user +
+        result[0].user_id +
         ".jpg";
     } else {
       var imgPath = path.join(__dirname, "assets") + "/profileMain.png";
