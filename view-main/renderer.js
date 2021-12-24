@@ -1,5 +1,6 @@
 const Webcam = require("webcamjs");
 const fs = require("fs");
+const database = require("../database");
 
 const clockHomePage = document.getElementById("clockHomePage");
 const nombreHomePage = document.getElementById("nombreHomePage");
@@ -11,6 +12,11 @@ const btnStartCamAdduser = document.getElementById("btnStartCamAddUser");
 const btnTakePictureAddUser = document.getElementById("btnTakePictureAddUser");
 const camAddUser = document.getElementById("camAddUser");
 const picAddUser = document.getElementById("picAddUser");
+const btnSaveAddUser = document.getElementById("btnSaveAddUser");
+const inpNameAddUser = document.getElementById("inpNameAddUser");
+const inpUserAddUser = document.getElementById("inpUserAddUser");
+const inpPasswordAddUser = document.getElementById("inpPasswordAddUser");
+const inpPasswordRepAddUser = document.getElementById("inpPasswordRepAddUser");
 
 var userExpand = false;
 
@@ -59,7 +65,26 @@ function showTitles() {
 showTitles();
 
 //Funciones para AddUser Tab
-var base64ImageAddUser;
+
+function validateAddUserForm() {
+  if (inpNameAddUser.value === "") {
+    console.log("Ingrese el nombre completo.");
+    return false;
+  } else if (inpUserAddUser.value === "") {
+    console.log("Ingrese el nombre de usuario");
+    return false;
+  } else if (inpPasswordAddUser.value === "") {
+    console.log("Llene el campo de la contraseña");
+    return false;
+  } else if (inpPasswordAddUser.value != inpPasswordRepAddUser.value) {
+    console.log("Las contraseñas no coinciden");
+    return false;
+  } else if (picAddUser.innerHTML === "") {
+    console.log("Tome la foto del usuario");
+    return false;
+  }
+  return true;
+}
 
 btnStartCamAdduser.onclick = function () {
   picAddUser.classList.add("d-none");
@@ -74,11 +99,43 @@ btnStartCamAdduser.onclick = function () {
 };
 
 btnTakePictureAddUser.onclick = function () {
-  Webcam.snap(function(data_uri){
-    picAddUser.innerHTML =  '<img src="'+data_uri+'"/>';
+  Webcam.snap(function (data_uri) {
+    picAddUser.innerHTML = '<img src="' + data_uri + '" id="imgPicAddUser" />';
     base64ImageAddUser = data_uri;
   });
-  picAddUser.classList.remove("d-none")
+  picAddUser.classList.remove("d-none");
   Webcam.reset();
   camAddUser.classList.add("d-none");
+};
+
+btnSaveAddUser.onclick = function () {
+  if (validateAddUserForm() === true) {
+    var sql =
+      "INSERT INTO users (name, user, password) values ('" +
+      inpNameAddUser.value +
+      "', '" +
+      inpUserAddUser.value +
+      "', '" +
+      inpPasswordAddUser.value +
+      "')";
+    database.query(sql, function (err, result) {
+      if (err) throw err;
+      let routeAddUser =
+        "./view-login/assets/profilePics/" + result.insertId + ".jpg";
+      var base64ImageAddUser = document.getElementById("imgPicAddUser").src;
+      base64ImageAddUser = base64ImageAddUser.split(";base64,").pop();
+      fs.writeFile(
+        routeAddUser,
+        base64ImageAddUser,
+        { encoding: "base64" },
+        function (err) {
+          picAddUser.innerHTML = "";
+          inpNameAddUser.value = "";
+          inpUserAddUser.value = "";
+          inpPasswordAddUser.value = "";
+          inpPasswordRepAddUser.value = "";
+        }
+      );
+    });
+  }
 };

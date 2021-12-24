@@ -18,27 +18,27 @@ main {
   overflow-y: hidden;
 }
 
-hr{
+hr {
   color: #ffffff;
 }
 
 /* SIDEBAR CSS */
-.sidebar-menu{
+.sidebar-menu {
   display: flex;
   flex-direction: column;
   width: 15%;
 }
 
-.sidebar-menu ul{
+.sidebar-menu ul {
   padding-left: 10px;
 }
 
-.brand-button{
+.brand-button {
   color: #ffffff;
   padding: 10px;
 }
 
-.submenu{
+.submenu {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -49,21 +49,22 @@ hr{
   flex-shrink: 0;
   width: 85%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
   border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
 }
 
-.tabcontent{
+.tabcontent {
   display: none;
   width: 100%;
   height: 100%;
 }
 
 /* CSS HOME PAGE */
-#homePage{
-  background-image: url('./assets/home/wallpaper.jpg');
+#homePage {
+  background-image: url("./assets/home/wallpaper.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -73,49 +74,51 @@ hr{
   justify-content: center;
 }
 
-#homePage h2{
+#homePage h2 {
   text-align: center;
   color: white;
   font-weight: 700;
   font-size: 70px;
 }
 
-#homePage div{
-  font-size:70px;
+#homePage div {
+  font-size: 70px;
   width: 100%;
   text-align: center;
   color: white;
 }
 
 /* CSS ADD USER PAGE */
-#addUser h2{
+#addUser h2 {
   text-align: center;
+  align-items: center;
   font-weight: 700;
   font-size: 40px;
 }
 
-.camContainerAddUser{
+.camContainerAddUser {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#picAddUser, #camAddUser{
+#picAddUser,
+#camAddUser {
   width: 320px;
   height: 220px;
   background-color: black;
 }
 
-#camControlsAddUser button{
+#camControlsAddUser button {
   font-size: 20px;
 }
 
-.camButtons{
+.camButtons {
   border-radius: 50%;
 }
 
-.fcoAddUser{
+.fcoAddUser {
   width: 80%;
   margin-left: 10%;
 }

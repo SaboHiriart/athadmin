@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,10 +7,8 @@
   <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
   <link href="styles.css" rel="stylesheet" />
-
   <!-- Custom styles for this template -->
 </head>
-
 <body>
   <main>
     <div class="sidebar-menu bg-dark">
@@ -63,21 +60,26 @@
           <div class="row align-items-center mt-3">
             <div class="col input-group">
               <span class="input-group-text" id="spNameAddUser"><i class="fas fa-user"></i></span>
-              <input type="text" class="form-control" placeholder="Nombre Completo" aria-label="Nombre" aria-describedby="spNameAddUser">
+              <input type="text" id="inpNameAddUser" class="form-control" placeholder="Nombre Completo" aria-label="Nombre" aria-describedby="spNameAddUser">
             </div>
             <div class="col input-group">
               <span class="input-group-text" id="spUserAddUser"><i class="fas fa-user-tag"></i></span>
-              <input type="text" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="spUserAddUser">
+              <input type="text" id="inpUserAddUser" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="spUserAddUser">
             </div>
           </div>
           <div class="row align-items-center mt-3">
             <div class="col input-group">
               <span class="input-group-text" id="spPassAddUser"><i class="fas fa-lock"></i></span>
-              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contra" aria-describedby="spPassAddUser">
+              <input type="password" id="inpPasswordAddUser" class="form-control" placeholder="Contraseña" aria-label="Contra" aria-describedby="spPassAddUser">
             </div>
             <div class="col input-group">
               <span class="input-group-text" id="spPassRpAddUser"><i class="fas fa-lock"></i></span>
-              <input type="password" class="form-control" placeholder="Repetir Contraseña" aria-label="Contra Repeat" aria-describedby="spPassRpAddUser">
+              <input type="password" id="inpPasswordRepAddUser" class="form-control" placeholder="Repetir Contraseña" aria-label="Contra Repeat" aria-describedby="spPassRpAddUser">
+            </div>
+          </div>
+          <div class="row justify-content-center mt-3">
+            <div class="col" style="width: 100%; align-items: center;">
+              <button class="btn btn-primary" id="btnSaveAddUser">Guardar Información</button>
             </div>
           </div>
         </div>
