@@ -32,18 +32,60 @@
             <button class="btn bg-dark text-white mb-1 tablink" id="4" onclick="openTab(event, 'modifyUser')">
               <i class="fas fa-user-edit"></i> Modificar
             </button>
+            <button class="btn bg-dark text-white mb-1 tablink" id="4" onclick="openTab(event, 'deleteUser')">
+              <i class="fas fa-user-minus"></i> Eliminar
+            </button>
           </div>
         </li>
       </ul>
     </div>
     <div class="panel-content">
       <!-- HOME TAB -->
-      <div class="tabcontent" id="homePage"></div>
+      <div class="tabcontent" id="homePage">
+        <h2 class="h1 p-5">Athletic Center</h2>
+        <div id="nombreHomePage" class="mt-5"></div>
+        <div id="clockHomePage" class="mt-5">
+        </div>
+      </div>
       <!-- TABS DE USUARIOS --> 
       <!-- ADD USER TAB-->   
-      <div class="tabcontent" id="addUser"></div>
-      <!--  -->
-      <div class="tabcontent" id="modifyUser"></div>
+      <div class="tabcontent" id="addUser">
+        <h2 class="h1 mt-4">Agregar Usuario</h2>
+        <div class="mt-4 camContainerAddUser">
+          <div id="camAddUser" class="d-none"></div>
+          <div id="picAddUser"></div>
+          <div id="camControlsAddUser" class="mt-2">
+            <button class="btn btn-primary camButtons" id="btnStartCamAddUser"><i class="fas fa-play"></i></button>
+            <button class="btn btn-primary camButtons" id="btnTakePictureAddUser"><i class="fas fa-camera-retro"></i></button>
+          </div>
+        </div>
+        <div class="mt-4 container fcoAddUser">
+          <div class="row align-items-center mt-3">
+            <div class="col input-group">
+              <span class="input-group-text" id="spNameAddUser"><i class="fas fa-user"></i></span>
+              <input type="text" class="form-control" placeholder="Nombre Completo" aria-label="Nombre" aria-describedby="spNameAddUser">
+            </div>
+            <div class="col input-group">
+              <span class="input-group-text" id="spUserAddUser"><i class="fas fa-user-tag"></i></span>
+              <input type="text" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="spUserAddUser">
+            </div>
+          </div>
+          <div class="row align-items-center mt-3">
+            <div class="col input-group">
+              <span class="input-group-text" id="spPassAddUser"><i class="fas fa-lock"></i></span>
+              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contra" aria-describedby="spPassAddUser">
+            </div>
+            <div class="col input-group">
+              <span class="input-group-text" id="spPassRpAddUser"><i class="fas fa-lock"></i></span>
+              <input type="password" class="form-control" placeholder="Repetir Contraseña" aria-label="Contra Repeat" aria-describedby="spPassRpAddUser">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modify User -->
+      <div class="tabcontent" id="modifyUser">Modify User</div>
+      <!-- Delete User -->
+      <div class="tabcontent" id="deleteUser">Delete User</div>
       <!-- TABS DE PUNTO DE VENTA -->
     </div>
   </main>

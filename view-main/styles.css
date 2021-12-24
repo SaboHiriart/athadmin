@@ -61,7 +61,61 @@ hr{
   height: 100%;
 }
 
-.tabcontent object{
+/* CSS HOME PAGE */
+#homePage{
+  background-image: url('./assets/home/wallpaper.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#homePage h2{
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 70px;
+}
+
+#homePage div{
+  font-size:70px;
   width: 100%;
-  height: 100%;
+  text-align: center;
+  color: white;
+}
+
+/* CSS ADD USER PAGE */
+#addUser h2{
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.camContainerAddUser{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#picAddUser, #camAddUser{
+  width: 320px;
+  height: 220px;
+  background-color: black;
+}
+
+#camControlsAddUser button{
+  font-size: 20px;
+}
+
+.camButtons{
+  border-radius: 50%;
+}
+
+.fcoAddUser{
+  width: 80%;
+  margin-left: 10%;
 }
