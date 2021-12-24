@@ -2,6 +2,10 @@ const Webcam = require("webcamjs");
 const fs = require("fs");
 const database = require("../database");
 
+//SideBar Objects
+const btnModifyUser = document.getElementById("btnModifyUser");
+
+//Home Page Objects
 const clockHomePage = document.getElementById("clockHomePage");
 const nombreHomePage = document.getElementById("nombreHomePage");
 const btnSubmenuUsers = document.getElementById("btnSubmenuUsers");
@@ -17,6 +21,9 @@ const inpNameAddUser = document.getElementById("inpNameAddUser");
 const inpUserAddUser = document.getElementById("inpUserAddUser");
 const inpPasswordAddUser = document.getElementById("inpPasswordAddUser");
 const inpPasswordRepAddUser = document.getElementById("inpPasswordRepAddUser");
+
+//Modify User Objects
+const selModifyUser = document.getElementById("selModifyUser");
 
 var userExpand = false;
 
@@ -139,3 +146,37 @@ btnSaveAddUser.onclick = function () {
     });
   }
 };
+
+//Funciones para ModifyUser tab
+function loadUsersModifyUser() {
+  selModifyUser.innerHTML = "";
+  var sql = "SELECT * FROM users";
+  var opt1 = document.createElement("option");
+  opt1.value = -1;
+  opt1.innerHTML = "Seleccione un Usuario";
+  selModifyUser.appendChild(opt1);
+  database.query(sql, function (err, result, fields) {
+    if (err) throw err;
+    for (i = 0; i < result.length; i++) {
+      var opt = document.createElement("option");
+      opt.value = result[i].user_id;
+      opt.innerHTML = result[i].name;
+      selModifyUser.appendChild(opt);
+    }
+  });
+}
+
+btnModifyUser.addEventListener("click", loadUsersModifyUser);
+
+selModifyUser.addEventListener("change", function () {
+
+  var sql = "SELECT * FROM users WHERE user_id = " + selModifyUser.value;
+  database.query(sql, function (err, result, fields) {
+    var table = document.getElementById("tableModifyUsers");
+    if(err) throw err;
+    table.innerHTML = "";
+    table.innerHTML =
+      "<tr><th>id</th><th>nombre</th><th>usuario</th><th>contraseña</th></tr>";
+    table.innerHTML =+ "<tr><td>" + result[0].user_id + "</td><td>" + result[0].name + "</td><td>" + result[0].user + "</td><td>" + result[0].password + "</td></tr>"
+  });
+});

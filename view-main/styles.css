@@ -122,3 +122,11 @@ hr {
   width: 80%;
   margin-left: 10%;
 }
+
+/* CSS MODIFY USER PAGE */
+#modifyUser h2{
+  text-align: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 40px;
+}

@@ -26,7 +26,7 @@
             <button class="btn bg-dark text-white mb-1 tablink" id="2" onclick="openTab(event, 'addUser')">
               <i class="fas fa-user-plus"></i> Agregar
             </button>
-            <button class="btn bg-dark text-white mb-1 tablink" id="4" onclick="openTab(event, 'modifyUser')">
+            <button class="btn bg-dark text-white mb-1 tablink" id="btnModifyUser" onclick="openTab(event, 'modifyUser')">
               <i class="fas fa-user-edit"></i> Modificar
             </button>
             <button class="btn bg-dark text-white mb-1 tablink" id="4" onclick="openTab(event, 'deleteUser')">
@@ -85,9 +85,17 @@
         </div>
       </div>
       <!-- Modify User -->
-      <div class="tabcontent" id="modifyUser">Modify User</div>
+      <div class="tabcontent" id="modifyUser">
+        <h2 class="h1 mt-4">Modificar Usuario</h2>
+        <select name="form-select mt-3" aria-label="Select User" id="selModifyUser"></select>
+        <div>
+          <table id="tableModifyUsers"></table>
+        </div>
+      </div>
       <!-- Delete User -->
-      <div class="tabcontent" id="deleteUser">Delete User</div>
+      <div class="tabcontent" id="deleteUser">
+        Delete User
+      </div>
       <!-- TABS DE PUNTO DE VENTA -->
     </div>
   </main>
