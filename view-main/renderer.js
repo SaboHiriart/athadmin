@@ -1,6 +1,7 @@
 const Webcam = require("webcamjs");
 const fs = require("fs");
 const database = require("../database");
+const path = require("path");
 
 //SideBar Objects
 const btnModifyUser = document.getElementById("btnModifyUser");
@@ -127,8 +128,7 @@ btnSaveAddUser.onclick = function () {
       "')";
     database.query(sql, function (err, result) {
       if (err) throw err;
-      let routeAddUser =
-        "./view-login/assets/profilePics/" + result.insertId + ".jpg";
+      let routeAddUser = path.join(__dirname, "../assets/profilePics/") + result.insertId + ".jpg";
       var base64ImageAddUser = document.getElementById("imgPicAddUser").src;
       base64ImageAddUser = base64ImageAddUser.split(";base64,").pop();
       fs.writeFile(
