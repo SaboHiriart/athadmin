@@ -7,6 +7,8 @@ const inpPassword = document.getElementById("inpPassword");
 const btnLogin = document.getElementById("btnLogin");
 const imgProfile = document.getElementById("imgProfile");
 
+imgProfile.src = path.join(__dirname, "../assets/profilePics") + "/profileMain.png";
+
 //Función que cambia la imagen de pefil al escribir el usuario
 const changeProfilePic = function (e) {
   var sql = "SELECT * FROM users WHERE user='" + inpUser.value + "'";
@@ -14,12 +16,12 @@ const changeProfilePic = function (e) {
     if (err) throw err;
     if (result.length >= 1) {
       var imgPath =
-        path.join(__dirname, "assets", "profilePics") +
+        path.join(__dirname, "../assets", "profilePics") +
         "/" +
         result[0].user_id +
         ".jpg";
     } else {
-      var imgPath = path.join(__dirname, "assets") + "/profileMain.png";
+      var imgPath = path.join(__dirname, "../assets/profilePics") + "/profileMain.png";
     }
     imgProfile.src = imgPath;
   });
