@@ -96,21 +96,21 @@ hr {
   font-size: 40px;
 }
 
-.camContainerAddUser {
+.camContainerUsers {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#picAddUser,
-#camAddUser {
+.picUsers,
+.camUsers {
   width: 320px;
   height: 220px;
   background-color: black;
 }
 
-#camControlsAddUser button {
+.camControlsUsers button {
   font-size: 20px;
 }
 
