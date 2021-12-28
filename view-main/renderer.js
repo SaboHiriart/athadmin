@@ -25,6 +25,19 @@ const inpPasswordRepAddUser = document.getElementById("inpPasswordRepAddUser");
 
 //Modify User Objects
 const selModifyUser = document.getElementById("selModifyUser");
+const btnStartCamModifyUser = document.getElementById("btnStartCamModifyUser");
+const btnTakePictureModifyUser = document.getElementById(
+  "btnTakePictureModifyUser"
+);
+const camModifyUser = document.getElementById("camModifyUser");
+const picModifyUser = document.getElementById("picModifyUser");
+const btnSaveModifyUser = document.getElementById("btnSaveModifyUser");
+const inpNameModifyUser = document.getElementById("inpNameModifyUser");
+const inpUserModifyUser = document.getElementById("inpUserModifyUser");
+const inpPasswordModifyUser = document.getElementById("inpPasswordModifyUser");
+const inpPasswordRepModifyUser = document.getElementById(
+  "inpPasswordRepModifyUser"
+);
 
 var userExpand = false;
 
@@ -69,7 +82,7 @@ function showTitles() {
   let currentDate = date + "/" + month + "/" + year;
   clockHomePage.innerHTML = currentDate + "<br>" + currentTime;
   nombreHomePage.innerHTML = "Bienvenido " + name_user;
-}
+};
 showTitles();
 
 //Funciones para AddUser Tab
@@ -92,7 +105,7 @@ function validateAddUserForm() {
     return false;
   }
   return true;
-}
+};
 
 btnStartCamAdduser.onclick = function () {
   picAddUser.classList.add("d-none");
@@ -128,7 +141,10 @@ btnSaveAddUser.onclick = function () {
       "')";
     database.query(sql, function (err, result) {
       if (err) throw err;
-      let routeAddUser = path.join(__dirname, "../assets/profilePics/") + result.insertId + ".jpg";
+      let routeAddUser =
+        path.join(__dirname, "../assets/profilePics/") +
+        result.insertId +
+        ".jpg";
       var base64ImageAddUser = document.getElementById("imgPicAddUser").src;
       base64ImageAddUser = base64ImageAddUser.split(";base64,").pop();
       fs.writeFile(
@@ -169,14 +185,67 @@ function loadUsersModifyUser() {
 btnModifyUser.addEventListener("click", loadUsersModifyUser);
 
 selModifyUser.addEventListener("change", function () {
-
-  var sql = "SELECT * FROM users WHERE user_id = " + selModifyUser.value;
-  database.query(sql, function (err, result, fields) {
-    var table = document.getElementById("tableModifyUsers");
-    if(err) throw err;
-    table.innerHTML = "";
-    table.innerHTML =
-      "<tr><th>id</th><th>nombre</th><th>usuario</th><th>contraseña</th></tr>";
-    table.innerHTML =+ "<tr><td>" + result[0].user_id + "</td><td>" + result[0].name + "</td><td>" + result[0].user + "</td><td>" + result[0].password + "</td></tr>"
-  });
+  if (selModifyUser.value === "-1") {
+    inpNameModifyUser.readOnly = true;
+    inpUserModifyUser.readOnly = true;
+    inpPasswordRepModifyUser.readOnly = true;
+    inpPasswordModifyUser.readOnly = true;
+  } else {
+    var sql = "SELECT * FROM users WHERE user_id = " + selModifyUser.value;
+    database.query(sql, function (err, result, fields) {
+      if (err) throw err;
+      let imgRoute =
+        path.join(__dirname, "..", "assets", "profilePics/") +
+        result[0].user_id +
+        ".jpg";
+      inpNameModifyUser.value = result[0].name;
+      inpUserModifyUser.value = result[0].user;
+      inpPasswordModifyUser.value = result[0].password;
+      inpPasswordRepModifyUser.value = result[0].password;
+      picModifyUser.innerHTML =
+        '<img style="width:320px; height:220px;" src="' + imgRoute + '"></img>';
+        inpNameModifyUser.readOnly = false;
+      inpUserModifyUser.readOnly = true;
+      inpPasswordRepModifyUser.readOnly = false;
+      inpPasswordModifyUser.readOnly = false;
+    });
+  }
 });
+
+btnStartCamModifyUser.onclick = function () {
+  picModifyUser.classList.add("d-none");
+  camModifyUser.classList.remove("d-none");
+  Webcam.set({
+    width: 320,
+    heigth: 220,
+    image_format: "jpeg",
+    jpeg_quality:90
+  });
+  Webcam.attach("camModifyUser");
+};
+
+btnTakePictureModifyUser.onclick = function () {
+  Webcam.snap(function (data_uri) {
+    picModifyUser.innerHTML = '<img src="' + data_uri + '" id="imgPicModifyUser" />';
+  });
+  picModifyUser.classList.remove("d-none");
+  Webcam.reset();
+  camModifyUser.classList.add("d-none");
+};
+
+btnSaveModifyUser.onclick = function () {
+  var sql = "UPDATE users SET name='" + inpNameModifyUser.value + "', password='" + inpPasswordModifyUser.value + "' WHERE user_id=" + selModifyUser.value;
+  database.query(sql, function(err, result){
+    if(err) throw err;
+    loadUsersModifyUser();
+    selModifyUser.value=-1;
+    inpNameModifyUser.value = "";
+    inpUserModifyUser.value = "";
+    inpPasswordModifyUser.value = "";
+    inpPasswordRepModifyUser.value = "";
+    inpNameModifyUser.readOnly = true;
+    inpUserModifyUser.readOnly = true;
+    inpPasswordModifyUser.readOnly = true;
+    inpPasswordRepModifyUser.readOnly = true;
+  });
+};
