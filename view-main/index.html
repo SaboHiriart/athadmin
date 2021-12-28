@@ -36,7 +36,10 @@
         </li>
       </ul>
     </div>
+
+
     <div class="panel-content">
+
       <!-- HOME TAB -->
       <div class="tabcontent" id="homePage">
         <h2 class="h1 p-5">Athletic Center</h2>
@@ -44,6 +47,7 @@
         <div id="clockHomePage" class="mt-5">
         </div>
       </div>
+
       <!-- TABS DE USUARIOS --> 
       <!-- ADD USER TAB-->   
       <div class="tabcontent" id="addUser">
@@ -84,12 +88,45 @@
           </div>
         </div>
       </div>
+
       <!-- Modify User -->
       <div class="tabcontent" id="modifyUser">
         <h2 class="h1 mt-4">Modificar Usuario</h2>
         <select name="form-select mt-3" aria-label="Select User" id="selModifyUser"></select>
-        <div>
-          <table id="tableModifyUsers"></table>
+        <div class="mt-4 camContainerUsers">
+          <div id="camModifyUser" class="d-none camUsers"></div>
+          <div id="picModifyUser" class="picUsers"></div>
+          <div id="camControlsUsers" class="mt-2">
+            <button class="btn btn-primary camButtons" id="btnStartCamModifyUser"><i class="fas fa-play"></i></button>
+            <button class="btn btn-primary camButtons" id="btnTakePictureModifyUser"><i class="fas fa-camera-retro"></i></button>
+          </div>
+        </div>
+        <div class="mt-4 container fcoAddUser">
+          <div class="row align-items-center mt-3">
+            <div class="col input-group">
+              <span class="input-group-text" id="spNameModifyUser"><i class="fas fa-user"></i></span>
+              <input type="text" id="inpNameModifyUser" class="form-control" placeholder="Nombre Completo" aria-label="Nombre" aria-describedby="spNameAddUser" readonly>
+            </div>
+            <div class="col input-group">
+              <span class="input-group-text" id="spUserModifyUser"><i class="fas fa-user-tag"></i></span>
+              <input type="text" id="inpUserModifyUser" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="spUserAddUser" readonly>
+            </div>
+          </div>
+          <div class="row align-items-center mt-3">
+            <div class="col input-group">
+              <span class="input-group-text" id="spPassModifyUser"><i class="fas fa-lock"></i></span>
+              <input type="password" id="inpPasswordModifyUser" class="form-control" placeholder="Contraseña" aria-label="Contra" aria-describedby="spPassAddUser" readonly>
+            </div>
+            <div class="col input-group">
+              <span class="input-group-text" id="spPassRpModifyUser"><i class="fas fa-lock"></i></span>
+              <input type="password" id="inpPasswordRepModifyUser" class="form-control" placeholder="Repetir Contraseña" aria-label="Contra Repeat" aria-describedby="spPassRpAddUser" readonly>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-3">
+            <div class="col" style="width: 100%; align-items: center;">
+              <button class="btn btn-primary" id="btnSaveModifyUser">Guardar Información</button>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Delete User -->
