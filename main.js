@@ -29,14 +29,15 @@ function createMainWindow(){
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            webviewTag: true
         },
         icon: path.join(__dirname, 'assets', 'icon.png'),
         title: 'Athadmin',
     });
     mainWindow.setTitle('Athadmin');
     mainWindow.maximize();
-    mainWindow.loadFile(path.join(__dirname, 'view-main/index.html'));
+    mainWindow.loadFile(path.join(__dirname, 'view-main-test/index.html'));
 }
 
 app.whenReady().then(createLoginWindow);
