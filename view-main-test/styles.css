@@ -1,0 +1,30 @@
+section{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    font-size: 20px;
+}
+
+.etabs-tabgroup{
+    width: 15%;
+}
+
+.etabs-tabs div{
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.etabs-tabs :hover{
+    background-color: blue;
+    cursor: pointer;
+}
+
+.etabs-views{
+    width: 85%;
+}
+
+.etabs-views webview{
+    max-width: 100%;
+}
