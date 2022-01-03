@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Clientes</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1 class="mt-2 text-center">Agregar Clientes</h1>
+
+    <div class="container mt-5">
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <div class="camaraDiv" style="background-color: blue; width: 100%; height: 100%;"></div>
+            </div>
+            <div class="col-8">
+                <div class="mb-4">
+                    <label for="nombreCliente" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
+                    <div id="nombreHelp" class="form-text">Ingrese el nombre(s) del cliente</div>
+                </div>
+                <div class="mb-4">
+                    <label for="apPatCliente" class="form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="apPatCliente" aria-describedby="apPatHelp">
+                    <div id="apPatHelp" class="form-text">Ingrese el apellido Paterno del Cliente</div>
+                </div>
+                <div>
+                    <label for="apMatCliente" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control" id="apMatCliente" aria-describedby="apMatHelp">
+                    <div id="apMatHelp" class="form-text">Ingrese el apellido Materno del Cliente</div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between mt-4">
+            <div class="col-6">
+                <div class="mb-4">
+                    <label for="cumpleCliente" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="cumpleCliente" aria-describedby="cumpleHelp" min="1921-01-01">
+                    <div id="cumpleHelp" class="form-text">Selecione la fecha de nacimiento del cliente </div>
+                </div>
+                <div class="mb-4">
+                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
+                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                </div>
+                <div>
+                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
+                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-4">
+                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
+                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                </div>
+                <div class="mb-4">
+                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
+                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                </div>
+                <div>
+                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
+                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./renderer.js"></script>
+</body>
+
+</html>
