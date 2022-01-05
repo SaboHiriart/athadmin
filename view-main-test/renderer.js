@@ -46,6 +46,6 @@ let clientModify = tabGroup.addTab({
 function tabReady(tab) {
   let webview = tab.webview;
   webview.addEventListener("dom-ready", () => {
-    webview.openDevTools();
+    //webview.openDevTools();
   });
 }
