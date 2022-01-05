@@ -1,0 +1,14 @@
+.picPhoto{
+    background-color: rgba(23, 23, 114, 0.486);
+    width: 100%;
+    height: 87%;
+}
+
+.camPhoto{
+    width: 100%;
+    height: 87%;
+}
+
+.picControls {
+    height: 13%;
+}
