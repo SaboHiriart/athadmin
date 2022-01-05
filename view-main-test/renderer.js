@@ -8,7 +8,6 @@ let clientAdd = tabGroup.addTab({
   visible: true,
   closable: false,
   icon: "fas fa-user-plus",
-  ready: tabReady,
   active: true,
   webviewAttributes: {
     nodeintegration: true,
@@ -17,22 +16,23 @@ let clientAdd = tabGroup.addTab({
   },
 });
 
-//let clientSearch = tabGroup.addTab({
-  //title: " Consultar Clientes",
-  //src: "../view-client-search/index.html",
-  //visible: true,
-  //closable: false,
-  //icon: "fas fa-user-edit",
-  //webviewAttributes: {
-    //nodeintegration: true,
-    //webpreferences: "contextIsolation=false",
-    //style: "width: 85%",
-  //},
-//});
+let clientSearch = tabGroup.addTab({
+  title: " Consultar Clientes",
+  src: "../view-client-search/index.html",
+  visible: true,
+  closable: false,
+  icon: "fas fa-user-edit",
+  ready: tabReady,
+  webviewAttributes: {
+    nodeintegration: true,
+    webpreferences: "contextIsolation=false",
+    style: "width: 85%",
+  },
+});
 
 function tabReady(tab) {
   let webview = tab.webview;
   webview.addEventListener("dom-ready", () => {
-    //webview.openDevTools();
+    webview.openDevTools();
   });
 }
