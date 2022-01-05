@@ -10,8 +10,22 @@
     <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Buscar Clientes</h1>
-
+    <h1>Registros Clientes</h1>
+    <button class="btn btn-primary"onclick="loadClientes()">actualizar</button>
+    <table id="Tabla" class="table table-striped table-hover" style="width: 95%; margin-left: 2.5%;">
+        <thead>
+            <th>ID Cliente</th>
+            <th>Nombre</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Telefono</th>
+            <th>Clase</th>
+            <th>Contacto Emergencia</th>
+            <th>Telefono Emergencia</th>
+        </thead>
+        <tbody id="cuerpoTabla">
+            
+        </tbody>
+    </table>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./renderer.js"></script>
 </body>
