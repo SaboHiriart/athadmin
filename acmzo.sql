@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-12-2021 a las 13:33:46
+-- Tiempo de generación: 04-01-2022 a las 18:02:13
 -- Versión del servidor: 10.6.5-MariaDB-1:10.6.5+maria~buster
 -- Versión de PHP: 7.4.25
 
@@ -20,6 +20,70 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `acmzo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clients`
+--
+
+CREATE TABLE `clients` (
+  `client_id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `ap_pat` varchar(30) NOT NULL,
+  `ap_mat` varchar(30) NOT NULL,
+  `birth_date` date NOT NULL,
+  `mail` varchar(60) NOT NULL,
+  `cellphone` varchar(10) NOT NULL,
+  `emergency_contact` varchar(70) NOT NULL,
+  `emergency_cellphone` varchar(10) NOT NULL,
+  `discipline` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `disciplines`
+--
+
+CREATE TABLE `disciplines` (
+  `discipline_id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `schedule_day` varchar(50) NOT NULL,
+  `schedule_time` time NOT NULL,
+  `instructor` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `disciplines`
+--
+
+INSERT INTO `disciplines` (`discipline_id`, `name`, `schedule_day`, `schedule_time`, `instructor`) VALUES
+(1, 'Flexor Stretching ', 'Lunes - Viernes', '07:00:00', 1),
+(2, 'Flexor Stretching', 'Lunes - Viernes', '08:00:00', 1),
+(3, 'Flexor Stretching ', 'Lunes - Viernes', '09:00:00', 1),
+(4, 'Flexor Stretching ', 'Lunes - Viernes', '18:00:00', 1),
+(5, 'Flexor Stretching ', 'Lunes - Viernes', '19:00:00', 1),
+(6, 'Flexor Stretching ', 'Lunes - Viernes', '20:00:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `instructors`
+--
+
+CREATE TABLE `instructors` (
+  `instructor_id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `birth_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `instructors`
+--
+
+INSERT INTO `instructors` (`instructor_id`, `name`, `birth_date`) VALUES
+(1, 'Manuel Alejandro Calixto Rosemberg', '2022-01-03');
 
 -- --------------------------------------------------------
 
@@ -64,7 +128,7 @@ INSERT INTO `users` (`user_id`, `name`, `user`, `password`) VALUES
 (1, 'Master User', 'admin', 'admin'),
 (2, 'Sebastian Ochoa Hiriart', 'desarrollo', 'Sabo0512$'),
 (3, 'Esly Alejandra Martinez Castillo', 'e.martinez', 'test1234'),
-(4, 'Test', 'test', '1234$');
+(4, 'test', 'test', 'a');
 
 -- --------------------------------------------------------
 
@@ -94,6 +158,26 @@ INSERT INTO `user_privilege` (`privilege_id`, `user_id`, `module_id`, `allow`) V
 --
 
 --
+-- Indices de la tabla `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`client_id`),
+  ADD KEY `discipline` (`discipline`);
+
+--
+-- Indices de la tabla `disciplines`
+--
+ALTER TABLE `disciplines`
+  ADD PRIMARY KEY (`discipline_id`),
+  ADD KEY `instructor` (`instructor`);
+
+--
+-- Indices de la tabla `instructors`
+--
+ALTER TABLE `instructors`
+  ADD PRIMARY KEY (`instructor_id`);
+
+--
 -- Indices de la tabla `program_modules`
 --
 ALTER TABLE `program_modules`
@@ -118,6 +202,18 @@ ALTER TABLE `user_privilege`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `disciplines`
+--
+ALTER TABLE `disciplines`
+  MODIFY `discipline_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `instructors`
+--
+ALTER TABLE `instructors`
+  MODIFY `instructor_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `program_modules`
 --
 ALTER TABLE `program_modules`
@@ -138,6 +234,18 @@ ALTER TABLE `user_privilege`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `clients`
+--
+ALTER TABLE `clients`
+  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`discipline`) REFERENCES `disciplines` (`discipline_id`);
+
+--
+-- Filtros para la tabla `disciplines`
+--
+ALTER TABLE `disciplines`
+  ADD CONSTRAINT `disciplines_ibfk_1` FOREIGN KEY (`instructor`) REFERENCES `instructors` (`instructor_id`);
 
 --
 -- Filtros para la tabla `user_privilege`
