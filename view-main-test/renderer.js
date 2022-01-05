@@ -21,13 +21,26 @@ let clientSearch = tabGroup.addTab({
   src: "../view-client-search/index.html",
   visible: true,
   closable: false,
-  icon: "fas fa-user-edit",
+  icon: "fas fa-user-cog",
   ready: tabReady,
   webviewAttributes: {
     nodeintegration: true,
     webpreferences: "contextIsolation=false",
     style: "width: 85%",
   },
+});
+
+let clientModify = tabGroup.addTab({
+  title: " Modificar Clientes",
+  src: "../view-client-modify/index.html",
+  visible: true,
+  closable: false,
+  icon: "fas fa-user-edit",
+  webviewAttributes: {
+    nodeintegration: true,
+    webpreferences: "contextIsolation=false",
+    style: "width: 85%",
+  }
 });
 
 function tabReady(tab) {
