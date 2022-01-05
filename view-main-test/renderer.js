@@ -2,7 +2,7 @@ const TabGroup = require("electron-tabs");
 
 let tabGroup = new TabGroup();
 
-let usuario = tabGroup.addTab({
+let clientAdd = tabGroup.addTab({
   title: " Agregar Cliente",
   src: "../view-client-add/index.html",
   visible: true,
@@ -17,22 +17,22 @@ let usuario = tabGroup.addTab({
   },
 });
 
-let usuario2 = tabGroup.addTab({
-  title: " Consultar Clientes",
-  src: "../view-client-search/index.html",
-  visible: true,
-  closable: false,
-  icon: "fas fa-user-edit",
-  webviewAttributes: {
-    nodeintegration: true,
-    webpreferences: "contextIsolation=false",
-    style: "width: 85%",
-  },
-});
+//let clientSearch = tabGroup.addTab({
+  //title: " Consultar Clientes",
+  //src: "../view-client-search/index.html",
+  //visible: true,
+  //closable: false,
+  //icon: "fas fa-user-edit",
+  //webviewAttributes: {
+    //nodeintegration: true,
+    //webpreferences: "contextIsolation=false",
+    //style: "width: 85%",
+  //},
+//});
 
 function tabReady(tab) {
   let webview = tab.webview;
   webview.addEventListener("dom-ready", () => {
-    webview.openDevTools();
+    //webview.openDevTools();
   });
 }
