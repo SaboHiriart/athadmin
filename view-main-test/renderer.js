@@ -12,7 +12,7 @@ let usuario = tabGroup.addTab({
   active: true,
   webviewAttributes: {
     nodeintegration: true,
-    webpreferences: "contextIsolation=false",
+    webpreferences: "contextIsolation=false, enableRemoteModule=true",
     style: "width: 85%",
   },
 });
@@ -31,7 +31,6 @@ let usuario2 = tabGroup.addTab({
 });
 
 function tabReady(tab) {
-  console.log("ready");
   let webview = tab.webview;
   webview.addEventListener("dom-ready", () => {
     webview.openDevTools();

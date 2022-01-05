@@ -12,13 +12,21 @@
 </head>
 
 <body>
-    <h1 class="mt-2 text-center">Agregar Clientes</h1>
+    <h1 class="mt-1 text-center">Agregar Clientes</h1>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="row justify-content-between">
-            <div class="col-4">
-                <div class="camaraDiv" style="background-color: blue; width: 100%; height: 100%;"></div>
+            <div class="col-4 camContainer">
+                <div class="picPhoto" id="picPhoto"></div>
+                <div class="camPhoto d-none" id="camPhoto"></div>
+                <div class="picControls mt-2">
+                    <button class="btn btn-primary camButtons" id="btnStart"><i
+                            class="fas fa-play"></i></button>
+                    <button class="btn btn-primary camButtons" id="btnTakePicture"><i
+                            class="fas fa-camera-retro"></i></button>
+                </div>
             </div>
+
             <div class="col-8">
                 <div class="mb-4">
                     <label for="nombreCliente" class="form-label">Nombre</label>
@@ -37,40 +45,50 @@
                 </div>
             </div>
         </div>
+
         <div class="row justify-content-between mt-4">
             <div class="col-6">
                 <div class="mb-4">
-                    <label for="cumpleCliente" class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="cumpleCliente" aria-describedby="cumpleHelp" min="1921-01-01">
-                    <div id="cumpleHelp" class="form-text">Selecione la fecha de nacimiento del cliente </div>
+                    <label for="fecheCliente" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaCliente" aria-describedby="fechaHelp" min="">
+                    <div id="fechaHelp" class="form-text">Seleccione la fecha de nacimiento del cliente</div>
                 </div>
                 <div class="mb-4">
-                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
-                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                    <label for="telefonoCliente" class="form-label">Tel&eacute;fono</label>
+                    <input type="number" class="form-control" id="telefonoCliente" aria-describedby="telefonoHelp">
+                    <div id="telefonoHelp" class="form-text">Ingrese el número de teléfono del cliente (10 digitos)
+                    </div>
                 </div>
-                <div>
-                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
-                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                <div class="mb-4">
+                    <label for="correoCliente" class="form-label">Contacto Emergencia</label>
+                    <input type="text" class="form-control" id="nombreEmergenciaCliente"
+                        aria-describedby="nombreEmergenciaHelp">
+                    <div id="nombreEmergenciaHelp" class="form-text">Ingrese el nombre del contacto de emergencia</div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-4">
-                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
-                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                    <label for="correoCliente" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correoCliente" aria-describedby="correoHelp">
+                    <div id="correoHelp" class="form-text">Ingrese la dirección de correo del cliente</div>
                 </div>
                 <div class="mb-4">
-                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
-                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                    <label for="disciplinaCliente" class="form-label">Disciplina</label>
+                    <select id="disciplinaCliente" class="form-select" aria-describedby="disciplinaHelp"></select>
+                    <div id="disciplinaHelp" class="form-text">Seleccione la disciplina</div>
                 </div>
-                <div>
-                    <label for="nombreCliente" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="nombreCliente" aria-describedby="nombreHelp">
-                    <div id="nombreHelp" class="form-text">Ingrese el nombre completo del Cliente</div>
+                <div class="mb-4">
+                    <label for="telefonoEmergenciaCliente" class="form-label">Teléfono Emergencia</label>
+                    <input type="number" class="form-control" id="telefonoEmergenciaCliente"
+                        aria-describedby="telefonoEmergenciaHelp">
+                    <div id="telefonoEmergenciaHelp" class="form-text">Ingrese el número de contacto de emergencia (10
+                        digitos)</div>
                 </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2 mb-4">
+            <div class="col-3">
+                <button class="btn btn-primary" id="btnGuardar">Registrar Cliente</button>
             </div>
         </div>
     </div>
