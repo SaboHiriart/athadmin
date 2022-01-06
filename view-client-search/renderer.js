@@ -7,7 +7,10 @@ const selectCampo = document.getElementById("campoBusqueda");
 const textoSearch = document.getElementById("textoBusqueda");
 const btnSearch = document.getElementById("searchClients");
 
+setInterval('loadClients()', 30000);
+
 function loadClients() {
+  console.log("update clients");
  cuerpoTabla.innerHTML = "";
   var sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients ORDER BY name ASC";
   db.query(sql, function (err, result, fields) {
