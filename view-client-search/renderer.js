@@ -9,7 +9,7 @@ const btnSearch = document.getElementById("searchClients");
 
 function loadClients() {
  cuerpoTabla.innerHTML = "";
-  var sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients ORDER BY client_id ASC";
+  var sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients ORDER BY name ASC";
   db.query(sql, function (err, result, fields) {
     if (err) throw err;
     for (var i = 0; i < result.length; i++) {
