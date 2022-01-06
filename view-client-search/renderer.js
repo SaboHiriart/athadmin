@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 const db = require("../database");
 const path = require("path");
 
@@ -7,68 +7,88 @@ const selectCampo = document.getElementById("campoBusqueda");
 const textoSearch = document.getElementById("textoBusqueda");
 const btnSearch = document.getElementById("searchClients");
 
-setInterval('loadClients()', 30000);
+setInterval("loadClients()", 30000);
 
 function loadClients() {
-  console.log("update clients");
- cuerpoTabla.innerHTML = "";
-  var sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients ORDER BY name ASC";
+  cuerpoTabla.innerHTML = "";
+  var sql =
+    "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS niceDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone FROM clients LEFT JOIN disciplines ON clients.discipline=disciplines.discipline_id ORDER BY clients.name ASC";
   db.query(sql, function (err, result, fields) {
     if (err) throw err;
     for (var i = 0; i < result.length; i++) {
       cuerpoTabla.innerHTML +=
-        "<tr id=" + result[i].client_id + "><td>" +
-        result[i].client_id +
+        "<tr id=" +
+        result[i].idCliente +
+        "><td>" +
+        result[i].idCliente +
         "</td><td>" +
-        result[i].name + " " + result[i].ap_pat + " " + result[i].ap_mat +
+        result[i].nombreCliente +
         "</td><td>" +
         result[i].niceDate +
         "</td><td>" +
-        result[i].cellphone +
+        result[i].clienteTelefono +
         "</td><td>" +
-        result[i].discipline +
+        result[i].clienteDisciplina +
         "</td><td>" +
         result[i].emergency_contact +
         "</td><td>" +
         result[i].emergency_cellphone +
-        "</td><td><button class='btn btn-danger' onclick='deleteClient(" + result[i].client_id + ")'><i class='fas fa-trash'></i></button></td></tr>";
+        "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
+        result[i].client_id +
+        ")'><i class='fas fa-trash'></i></button></td></tr>";
     }
   });
 }
 
 function deleteClient(client_id) {
   var sql = "DELETE FROM clients WHERE client_id=" + client_id;
-  db.query(sql, function(err, result){
-      if(err) throw err;
-      console.log("Numero de registros eliminados: " + result.affectedRows);
-      var ruta = path.join(__dirname , '../') + "assets/clientsPics/" + client_id + ".jpg";
-    fs.unlinkSync(ruta)
-      loadClients();
-      textoSearch.value = ""
-      selectCampo.value = 0;
-  })
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Numero de registros eliminados: " + result.affectedRows);
+    var ruta =
+      path.join(__dirname, "../") + "assets/clientsPics/" + client_id + ".jpg";
+    fs.unlinkSync(ruta);
+    loadClients();
+    textoSearch.value = "";
+    selectCampo.value = 0;
+  });
 }
 
 window.onload = loadClients();
 
-btnSearch.addEventListener('click', function () {
+btnSearch.addEventListener("click", function () {
   var sql;
-  if(selectCampo.value == 0){
-    sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients WHERE client_id LIKE '" + textoSearch.value + "%' ORDER BY client_id ASC";
-  }else if(selectCampo.value  == 1){
-    sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients WHERE concat_ws(' ', name, ap_pat , ap_mat) LIKE '" + textoSearch.value + "%' ORDER BY client_id ASC";
-  }else if(selectCampo.value == 2){
-    sql = "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients WHERE cellphone LIKE '" + textoSearch.value + "%' ORDER BY client_id ASC";
+  if (selectCampo.value == 0) {
+    sql =
+      "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients WHERE client_id LIKE '" +
+      textoSearch.value +
+      "%' ORDER BY client_id ASC";
+  } else if (selectCampo.value == 1) {
+    sql =
+      "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients WHERE concat_ws(' ', name, ap_pat , ap_mat) LIKE '" +
+      textoSearch.value +
+      "%' ORDER BY client_id ASC";
+  } else if (selectCampo.value == 2) {
+    sql =
+      "SELECT *, DATE_FORMAT(birth_date, '%d/%m/%Y') AS niceDate FROM clients WHERE cellphone LIKE '" +
+      textoSearch.value +
+      "%' ORDER BY client_id ASC";
   }
   cuerpoTabla.innerHTML = "";
   db.query(sql, function (err, result, fields) {
     if (err) throw err;
     for (var i = 0; i < result.length; i++) {
       cuerpoTabla.innerHTML +=
-        "<tr id=" + result[i].client_id + "><td>" +
+        "<tr id=" +
+        result[i].client_id +
+        "><td>" +
         result[i].client_id +
         "</td><td>" +
-        result[i].name + " " + result[i].ap_pat + " " + result[i].ap_mat +
+        result[i].name +
+        " " +
+        result[i].ap_pat +
+        " " +
+        result[i].ap_mat +
         "</td><td>" +
         result[i].niceDate +
         "</td><td>" +
@@ -79,7 +99,9 @@ btnSearch.addEventListener('click', function () {
         result[i].emergency_contact +
         "</td><td>" +
         result[i].emergency_cellphone +
-        "</td><td><button class='btn btn-danger' onclick='deleteClient(" + result[i].client_id + ")'><i class='fas fa-trash'></button></td></tr>";
+        "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
+        result[i].client_id +
+        ")'><i class='fas fa-trash'></button></td></tr>";
     }
   });
 });
