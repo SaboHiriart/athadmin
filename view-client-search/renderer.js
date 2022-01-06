@@ -6,12 +6,14 @@ const cuerpoTabla = document.getElementById("cuerpoTabla");
 const selectCampo = document.getElementById("campoBusqueda");
 const textoSearch = document.getElementById("textoBusqueda");
 const btnSearch = document.getElementById("searchClients");
+const disciplinaCliente = document.getElementById("disciplinaCliente");
 
 setInterval("loadClients()", 30000);
+setInterval("loadDisciplines()", 300000)
 
 function loadClients() {
   cuerpoTabla.innerHTML = "";
-  var sql =
+    var sql =
     "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS niceDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone FROM clients LEFT JOIN disciplines ON clients.discipline=disciplines.discipline_id ORDER BY clients.name ASC";
   db.query(sql, function (err, result, fields) {
     if (err) throw err;
@@ -54,7 +56,32 @@ function deleteClient(client_id) {
   });
 }
 
-window.onload = loadClients();
+function loadDisciplines() {
+  disciplinaCliente.innerHTML = "";
+  var sql = "SELECT * FROM disciplines";
+  var opt_i = document.createElement("option");
+  opt_i.value = 0;
+  opt_i.innerHTML = "Todas";
+  disciplinaCliente.appendChild(opt_i)
+  db.query(sql, function (err, result, fields) {
+    for (i = 0; i < result.length; i++) {
+      var opt = document.createElement("option");
+      opt.value = result[i].discipline_id;
+      opt.innerHTML =
+        result[i].name +
+        " / " +
+        result[i].schedule_day +
+        " / " +
+        result[i].schedule_time;
+      disciplinaCliente.appendChild(opt);
+    }
+  });
+}
+
+window.onload = function (){
+  loadClients(false, "");
+  loadDisciplines();
+};
 
 btnSearch.addEventListener("click", function () {
   var sql;
