@@ -8,10 +8,8 @@ const textoSearch = document.getElementById("textoBusqueda");
 const btnSearch = document.getElementById("searchClients");
 const disciplinaCliente = document.getElementById("disciplinaCliente");
 
-setInterval("loadClients()", 30000);
-setInterval("loadDisciplines()", 300000)
-
 function loadClients() {
+  console.log("funcion loadClientes disparada")
   cuerpoTabla.innerHTML = "";
     var sql =
     "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS niceDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone FROM clients LEFT JOIN disciplines ON clients.discipline=disciplines.discipline_id ORDER BY clients.name ASC";
@@ -79,7 +77,7 @@ function loadDisciplines() {
 }
 
 window.onload = function (){
-  loadClients(false, "");
+  loadClients();
   loadDisciplines();
 };
 
@@ -132,3 +130,36 @@ btnSearch.addEventListener("click", function () {
     }
   });
 });
+
+disciplinaCliente.onchange = function () {
+  cuerpoTabla.innerHTML = "";
+    var sql =
+    "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS niceDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone FROM clients INNER JOIN disciplines ON clients.discipline=" + disciplinaCliente.value + " AND disciplines.discipline_id=clients.discipline ORDER BY clients.name ASC";
+    console.log(sql);
+    db.query(sql, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    for (var i = 0; i < result.length; i++) {
+      cuerpoTabla.innerHTML +=
+        "<tr id=" +
+        result[i].idCliente +
+        "><td>" +
+        result[i].idCliente +
+        "</td><td>" +
+        result[i].nombreCliente +
+        "</td><td>" +
+        result[i].niceDate +
+        "</td><td>" +
+        result[i].clienteTelefono +
+        "</td><td>" +
+        result[i].clienteDisciplina +
+        "</td><td>" +
+        result[i].emergency_contact +
+        "</td><td>" +
+        result[i].emergency_cellphone +
+        "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
+        result[i].client_id +
+        ")'><i class='fas fa-trash'></i></button></td></tr>";
+    }
+  });
+}
