@@ -49,7 +49,6 @@ function clearForm() {
 }
 
 function loadClientes() {
-  console.log("update Clients");
   selNombreCliente.innerHTML = "";
   var sql =
     "SELECT client_id, concat_ws(' ', name, ap_pat, ap_mat) as nombre_completo FROM clients ORDER BY name ASC";
