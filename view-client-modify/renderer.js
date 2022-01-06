@@ -29,6 +29,8 @@ var camEstatus = false;
 var base64ImageAddUser;
 var identificadorCliente;
 
+setInterval('loadClientes()',30000);
+
 imgCliente.onerror = function () {
   imgCliente.src = "../assets/clientsPics/0.png";
 };
@@ -47,6 +49,7 @@ function clearForm() {
 }
 
 function loadClientes() {
+  console.log("update Clients");
   selNombreCliente.innerHTML = "";
   var sql =
     "SELECT client_id, concat_ws(' ', name, ap_pat, ap_mat) as nombre_completo FROM clients ORDER BY name ASC";
@@ -96,18 +99,17 @@ function clearForm() {
 }
 
 function loadClientInfo() {
-  console.log(selNombreCliente.value);
   var sql =
     "SELECT *, DATE_FORMAT(birth_date, '%Y/%m/%d') AS niceDate FROM clients WHERE client_id=" +
     selNombreCliente.value;
   db.query(sql, function (error, result, fields) {
     if (error) throw error;
-    console.log(result[0].niceDate);
+    var date = new Date(result[0].niceDate);
     identificadorCliente = result[0].client_id;
     nombreCliente.value = result[0].name;
     apPatCliente.value = result[0].ap_pat;
     apMatCliente.value = result[0].ap_mat;
-    fechaCliente.value = result[0].niceDate;
+    fechaCliente.value = date.toISOString().substring(0,10);
     telefonoCliente.value = result[0].cellphone;
     nombreEmergenciaCliente.value = result[0].emergency_contact;
     telefonoEmergenciaCliente.value = result[0].emergency_cellphone;
@@ -154,6 +156,8 @@ function updateClient() {
         base64ImageAddUser,
         { encoding: "base64" },
         function (err) {
+          selNombreCliente.selectedIndex = 0;
+          loadClientes();
           clearForm();
         }
       );
