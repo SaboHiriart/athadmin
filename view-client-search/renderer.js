@@ -7,7 +7,6 @@ const selectCampo = document.getElementById("campoBusqueda");
 const textoSearch = document.getElementById("textoBusqueda");
 const btnSearch = document.getElementById("searchClients");
 const disciplinaCliente = document.getElementById("disciplinaCliente");
-const tabla = document.getElementById("Tabla");
 
 var dataClients;
 
