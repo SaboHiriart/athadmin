@@ -22,6 +22,7 @@ let clientSearch = tabGroup.addTab({
   visible: true,
   closable: false,
   icon: "fas fa-user-cog",
+  ready: tabReady,
   webviewAttributes: {
     nodeintegration: true,
     webpreferences: "contextIsolation=false",
@@ -35,7 +36,6 @@ let clientModify = tabGroup.addTab({
   visible: true,
   closable: false,
   icon: "fas fa-user-edit",
-  ready: tabReady,
   webviewAttributes: {
     nodeintegration: true,
     webpreferences: "contextIsolation=false",
@@ -46,6 +46,6 @@ let clientModify = tabGroup.addTab({
 function tabReady(tab) {
   let webview = tab.webview;
   webview.addEventListener("dom-ready", () => {
-    //webview.openDevTools();
+    webview.openDevTools();
   });
 }
