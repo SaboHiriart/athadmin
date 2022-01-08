@@ -11,14 +11,19 @@ const disciplinaCliente = document.getElementById("disciplinaCliente");
 var dataClients;
 
 function loadClients() {
-  console.log("funcion loadClientes disparada");
   cuerpoTabla.innerHTML = "";
   var sql =
-    "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS niceDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone FROM clients LEFT JOIN disciplines ON clients.discipline=disciplines.discipline_id ORDER BY clients.name ASC";
+    "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS birthDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone, DATE_FORMAT(clients.payment_day, '%d/%m/%Y') AS payment_day, clients.status AS status FROM clients LEFT JOIN disciplines ON clients.discipline=disciplines.discipline_id ORDER BY clients.name ASC";
   db.query(sql, function (err, result, fields) {
     if (err) throw err;
     dataClients = result;
     for (var i = 0; i < result.length; i++) {
+      var status;
+      if(result[i].status === 1){
+        status = "Activo";
+      }else{
+        status = "Vencido";
+      }
       cuerpoTabla.innerHTML +=
         "<tr id=" +
         result[i].idCliente +
@@ -27,15 +32,13 @@ function loadClients() {
         "</td><td>" +
         result[i].nombreCliente +
         "</td><td>" +
-        result[i].niceDate +
-        "</td><td>" +
         result[i].clienteTelefono +
         "</td><td>" +
         result[i].clienteDisciplina +
         "</td><td>" +
-        result[i].emergency_contact +
+        result[i].payment_day +
         "</td><td>" +
-        result[i].emergency_cellphone +
+        status +
         "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
         result[i].client_id +
         ")'><i class='fas fa-trash'></i></button></td></tr>";
@@ -95,7 +98,9 @@ btnSearch.addEventListener("click", function () {
       auxText = dataClients[i].clienteTelefono;
     }
     auxText = auxText.toString();
+    console.log(auxText + " = " + textoSearch.value);
     if (auxText.includes(textoSearch.value) === false) {
+      console.log("coincidencia");
       var row = document.getElementById(dataClients[i].idCliente);
       row.parentNode.removeChild(row);
       dataClients.splice(i, 1);
@@ -109,35 +114,39 @@ disciplinaCliente.onchange = function () {
   } else {
     cuerpoTabla.innerHTML = "";
     var sql =
-      "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS niceDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone FROM clients INNER JOIN disciplines ON clients.discipline=" +
+      "SELECT clients.client_id AS idCliente, CONCAT(clients.name, ' ', clients.ap_pat, ' ', clients.ap_mat) AS nombreCliente, DATE_FORMAT(clients.birth_date, '%d/%m/%Y') AS birthDate, clients.cellphone AS clienteTelefono, CONCAT(disciplines.name, ' ', disciplines.schedule_day, ' ', disciplines.schedule_time) AS clienteDisciplina, clients.emergency_contact AS emergency_contact, clients.emergency_cellphone AS emergency_cellphone, DATE_FORMAT(clients.payment_day, '%d/%m/%Y') AS payment_day, clients.status AS status FROM clients INNER JOIN disciplines ON clients.discipline=" +
       disciplinaCliente.value +
       " AND disciplines.discipline_id=clients.discipline ORDER BY clients.name ASC";
-    console.log(sql);
     db.query(sql, function (err, result, fields) {
       if (err) throw err;
-      dataClients = result;
-      for (var i = 0; i < result.length; i++) {
-        cuerpoTabla.innerHTML +=
-          "<tr id=" +
-          result[i].idCliente +
-          "><td>" +
-          result[i].idCliente +
-          "</td><td>" +
-          result[i].nombreCliente +
-          "</td><td>" +
-          result[i].niceDate +
-          "</td><td>" +
-          result[i].clienteTelefono +
-          "</td><td>" +
-          result[i].clienteDisciplina +
-          "</td><td>" +
-          result[i].emergency_contact +
-          "</td><td>" +
-          result[i].emergency_cellphone +
-          "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
-          result[i].client_id +
-          ")'><i class='fas fa-trash'></i></button></td></tr>";
+      if (err) throw err;
+    dataClients = result;
+    for (var i = 0; i < result.length; i++) {
+      var status;
+      if(result[i].status === 1){
+        status = "Activo";
+      }else{
+        status = "Vencido";
       }
+      cuerpoTabla.innerHTML +=
+        "<tr id=" +
+        result[i].idCliente +
+        "><td>" +
+        result[i].idCliente +
+        "</td><td>" +
+        result[i].nombreCliente +
+        "</td><td>" +
+        result[i].clienteTelefono +
+        "</td><td>" +
+        result[i].clienteDisciplina +
+        "</td><td>" +
+        result[i].payment_day +
+        "</td><td>" +
+        status +
+        "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
+        result[i].client_id +
+        ")'><i class='fas fa-trash'></i></button></td></tr>";
+    }
     });
   }
 };
