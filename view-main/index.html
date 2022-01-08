@@ -1,145 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Bootstrap, Fontawesome and Native CSS -->
-  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
-  <link href="styles.css" rel="stylesheet" />
-  <!-- Custom styles for this template -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link href="styles.css" rel="stylesheet" />
 </head>
+
 <body>
-  <main>
-    <div class="sidebar-menu bg-dark">
-      <button class="btn mt-4 mb-3 bg-dark text-white" onclick="openTab(event, 'homePage')">
-        Athletic Center
-      </button>
-      <hr />
-      <ul class="mt-2">
-        <li>
-          <button id="btnSubmenuUsers" class="btn bg-dark text-white mb-1 tablink active" type="button"
-            data-bs-toggle="collapse" data-bs-target="#submenuUsers" aria-controls="submenuUsers" aria-expanded="false">
-            <span class="mr-2"><i id="icoSubmenuUsers" class="far fa-plus-square"></i></span>Usuarios
-          </button>
-          <div class="collapse submenu" id="submenuUsers">
-            <button class="btn bg-dark text-white mb-1 tablink" id="2" onclick="openTab(event, 'addUser')">
-              <i class="fas fa-user-plus"></i> Agregar
-            </button>
-            <button class="btn bg-dark text-white mb-1 tablink" id="btnModifyUser" onclick="openTab(event, 'modifyUser')">
-              <i class="fas fa-user-edit"></i> Modificar
-            </button>
-            <button class="btn bg-dark text-white mb-1 tablink" id="4" onclick="openTab(event, 'deleteUser')">
-              <i class="fas fa-user-minus"></i> Eliminar
-            </button>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-
-    <div class="panel-content">
-
-      <!-- HOME TAB -->
-      <div class="tabcontent" id="homePage">
-        <h2 class="h1 p-5">Athletic Center</h2>
-        <div id="nombreHomePage" class="mt-5"></div>
-        <div id="clockHomePage" class="mt-5">
+    <section>
+        <div class="etabs-tabgroup bg-dark text-white">
+            <div style="width: 100%;" class="mb-4"><img src="../assets/icon.png" style="width: 100%;"></div>
+            <hr>
+            <div class="etabs-tabs"></div>
+            <div class="etabs-buttons"></div>
         </div>
-      </div>
+        <div class="etabs-views"></div>
+    </section>
 
-      <!-- TABS DE USUARIOS --> 
-      <!-- ADD USER TAB-->   
-      <div class="tabcontent" id="addUser">
-        <h2 class="h1 mt-4">Agregar Usuario</h2>
-        <div class="mt-4 camContainerUsers">
-          <div id="camAddUser" class="d-none camUsers"></div>
-          <div id="picAddUser" class="picUsers"></div>
-          <div id="camControlsUsers" class="mt-2">
-            <button class="btn btn-primary camButtons" id="btnStartCamAddUser"><i class="fas fa-play"></i></button>
-            <button class="btn btn-primary camButtons" id="btnTakePictureAddUser"><i class="fas fa-camera-retro"></i></button>
-          </div>
-        </div>
-        <div class="mt-4 container fcoAddUser">
-          <div class="row align-items-center mt-3">
-            <div class="col input-group">
-              <span class="input-group-text" id="spNameAddUser"><i class="fas fa-user"></i></span>
-              <input type="text" id="inpNameAddUser" class="form-control" placeholder="Nombre Completo" aria-label="Nombre" aria-describedby="spNameAddUser">
-            </div>
-            <div class="col input-group">
-              <span class="input-group-text" id="spUserAddUser"><i class="fas fa-user-tag"></i></span>
-              <input type="text" id="inpUserAddUser" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="spUserAddUser">
-            </div>
-          </div>
-          <div class="row align-items-center mt-3">
-            <div class="col input-group">
-              <span class="input-group-text" id="spPassAddUser"><i class="fas fa-lock"></i></span>
-              <input type="password" id="inpPasswordAddUser" class="form-control" placeholder="Contraseña" aria-label="Contra" aria-describedby="spPassAddUser">
-            </div>
-            <div class="col input-group">
-              <span class="input-group-text" id="spPassRpAddUser"><i class="fas fa-lock"></i></span>
-              <input type="password" id="inpPasswordRepAddUser" class="form-control" placeholder="Repetir Contraseña" aria-label="Contra Repeat" aria-describedby="spPassRpAddUser">
-            </div>
-          </div>
-          <div class="row justify-content-center mt-3">
-            <div class="col" style="width: 100%; align-items: center;">
-              <button class="btn btn-primary" id="btnSaveAddUser">Guardar Información</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modify User -->
-      <div class="tabcontent" id="modifyUser">
-        <h2 class="h1 mt-4">Modificar Usuario</h2>
-        <select name="form-select mt-3" aria-label="Select User" id="selModifyUser"></select>
-        <div class="mt-4 camContainerUsers">
-          <div id="camModifyUser" class="d-none camUsers"></div>
-          <div id="picModifyUser" class="picUsers"></div>
-          <div id="camControlsUsers" class="mt-2">
-            <button class="btn btn-primary camButtons" id="btnStartCamModifyUser"><i class="fas fa-play"></i></button>
-            <button class="btn btn-primary camButtons" id="btnTakePictureModifyUser"><i class="fas fa-camera-retro"></i></button>
-          </div>
-        </div>
-        <div class="mt-4 container fcoAddUser">
-          <div class="row align-items-center mt-3">
-            <div class="col input-group">
-              <span class="input-group-text" id="spNameModifyUser"><i class="fas fa-user"></i></span>
-              <input type="text" id="inpNameModifyUser" class="form-control" placeholder="Nombre Completo" aria-label="Nombre" aria-describedby="spNameAddUser" readonly>
-            </div>
-            <div class="col input-group">
-              <span class="input-group-text" id="spUserModifyUser"><i class="fas fa-user-tag"></i></span>
-              <input type="text" id="inpUserModifyUser" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="spUserAddUser" readonly>
-            </div>
-          </div>
-          <div class="row align-items-center mt-3">
-            <div class="col input-group">
-              <span class="input-group-text" id="spPassModifyUser"><i class="fas fa-lock"></i></span>
-              <input type="password" id="inpPasswordModifyUser" class="form-control" placeholder="Contraseña" aria-label="Contra" aria-describedby="spPassAddUser" readonly>
-            </div>
-            <div class="col input-group">
-              <span class="input-group-text" id="spPassRpModifyUser"><i class="fas fa-lock"></i></span>
-              <input type="password" id="inpPasswordRepModifyUser" class="form-control" placeholder="Repetir Contraseña" aria-label="Contra Repeat" aria-describedby="spPassRpAddUser" readonly>
-            </div>
-          </div>
-          <div class="row justify-content-center mt-3">
-            <div class="col" style="width: 100%; align-items: center;">
-              <button class="btn btn-primary" id="btnSaveModifyUser">Guardar Información</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Delete User -->
-      <div class="tabcontent" id="deleteUser">
-        Delete User
-      </div>
-      <!-- TABS DE PUNTO DE VENTA -->
-    </div>
-  </main>
-  <!-- Boostrap JS Bundle, Renderer JS And Sidebar JS -->
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./sidebar.js"></script>
-  <script src="./renderer.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./renderer.js"></script>
 </body>
 
 </html>
