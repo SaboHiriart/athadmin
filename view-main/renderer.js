@@ -1,64 +1,14 @@
-const TabGroup = require("electron-tabs");
+const path = require('path')
 
-let tabGroup = new TabGroup();
+const areaDesplegadoTabs = document.getElementById("areaTab");
 
-let clientAdd = tabGroup.addTab({
-  title: " Agregar Cliente",
-  src: "../view-client-add/index.html",
-  visible: true,
-  closable: false,
-  icon: "fas fa-user-plus",
-  active: true,
-  webviewAttributes: {
-    nodeintegration: true,
-    webpreferences: "contextIsolation=false, enableRemoteModule=true",
-    style: "width: 85%",
-  },
-});
-
-let clientSearch = tabGroup.addTab({
-  title: " Consultar Clientes",
-  src: "../view-client-search/index.html",
-  visible: true,
-  closable: false,
-  icon: "fas fa-user-cog",
-  webviewAttributes: {
-    nodeintegration: true,
-    webpreferences: "contextIsolation=false",
-    style: "width: 85%",
-  },
-});
-
-let clientModify = tabGroup.addTab({
-  title: " Modificar Clientes",
-  src: "../view-client-modify/index.html",
-  visible: true,
-  closable: false,
-  icon: "fas fa-user-edit",
-  webviewAttributes: {
-    nodeintegration: true,
-    webpreferences: "contextIsolation=false",
-    style: "width: 85%",
+function cambiarDeTab(nombreDeTab) {
+  var tabs = document.getElementsByClassName("nav-link");
+  var rutaPagina = path.join(__dirname, "../") + nombreDeTab + "/index.html";
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
   }
-});
-
-let atendance = tabGroup.addTab({
-  title: " Asistencia",
-  src: "../view-atendance/index.html",
-  visible: true,
-  closable: false,
-  icon: "fas fa-calendar",
-  ready: tabReady,
-  webviewAttributes: {
-    nodeintegration: true,
-    webpreferences: "contextIsolation=false",
-    style: "width: 85%",
-  }
-});
-
-function tabReady(tab) {
-  let webview = tab.webview;
-  webview.addEventListener("dom-ready", () => {
-    webview.openDevTools();
-  });
+  document.getElementById(nombreDeTab).classList.add("active");
+  areaDesplegadoTabs.innerHTML =
+    '<webview nodeintegration="true" webpreferences="contextIsolation=false, enableRemoteModule=true" src="' + rutaPagina + '"></webview>';
 }

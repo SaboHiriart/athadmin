@@ -1,30 +1,43 @@
-section{
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    font-size: 20px;
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
-.etabs-tabgroup{
-    width: 15%;
+html {
+  height: -webkit-fill-available;
 }
 
-.etabs-tabs div{
-    margin-bottom: 10px;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
-.etabs-tabs :hover{
-    background-color: blue;
-    cursor: pointer;
+webview{
+  width: 100%;
+  height: 100%;
 }
 
-.etabs-views{
-    width: 85%;
+.tabContent {
+  flex-shrink: 0;
+  width: calc(100% - 280px);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 }
 
-.etabs-views webview{
-    max-width: 100%;
+.dropdown-toggle { outline: 0; }
+
+.nav-link {
+  border-radius: 0;
+}
+
+.nav-item{
+  cursor: pointer;
 }
