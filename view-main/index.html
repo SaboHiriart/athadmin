@@ -15,11 +15,17 @@
     <main>
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
             <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <span class="fs-4"><i class="fas fa-home"></i></span>
-                <span class="fs-4"> Inicio</span>
+                <span class="fs-4"> Athletic Center</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item" onclick="cambiarDeTab('view-atendance')">
+                    <a id="view-atendance" class="nav-link text-white" aria-current="page">
+                        <span><i class="fas fa-calendar"></i></span>
+                        Asistencia
+                    </a>
+                </li>
+                <hr>
                 <li class="nav-item" onclick="cambiarDeTab('view-client-add')">
                     <a id="view-client-add" class="nav-link text-white active" aria-current="page">
                         <span><i class="fas fa-user-plus"></i></span>
@@ -28,14 +34,14 @@
                 </li>
                 <li class="nav-item" onclick="cambiarDeTab('view-client-search')">
                     <a id="view-client-search" class="nav-link text-white" aria-current="page">
-                        <span><i class="fas fa-user-plus"></i></span>
+                        <span><i class="fas fa-users"></i></span>
                         Buscar Cliente
                     </a>
                 </li>
                 <li class="nav-item" onclick="cambiarDeTab('view-client-modify')">
                     <a id="view-client-modify" class="nav-link text-white" aria-current="page">
-                        <span><i class="fas fa-user-plus"></i></span>
-                        Buscar Cliente
+                        <span><i class="fas fa-user-edit"></i></span>
+                        Actualizar Cliente
                     </a>
                 </li>
             </ul>
@@ -44,16 +50,14 @@
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
+                    <strong id="nombreUsuarioLogeado">mdo</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" href="#">Salir</a></li>
                 </ul>
             </div>
         </div>

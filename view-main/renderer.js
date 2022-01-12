@@ -2,6 +2,8 @@ const path = require('path')
 
 const areaDesplegadoTabs = document.getElementById("areaTab");
 
+window.onload(cambiarDeTab("view-atendance"));
+
 function cambiarDeTab(nombreDeTab) {
   var tabs = document.getElementsByClassName("nav-link");
   var rutaPagina = path.join(__dirname, "../") + nombreDeTab + "/index.html";

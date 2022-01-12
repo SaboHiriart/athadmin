@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-01-2022 a las 18:02:13
+-- Tiempo de generación: 12-01-2022 a las 17:55:22
 -- Versión del servidor: 10.6.5-MariaDB-1:10.6.5+maria~buster
 -- Versión de PHP: 7.4.25
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `atendance`
+--
+
+CREATE TABLE `atendance` (
+  `atendance_id` int(9) NOT NULL,
+  `client_id` int(5) NOT NULL,
+  `atendance_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `atendance`
+--
+
+INSERT INTO `atendance` (`atendance_id`, `client_id`, `atendance_date`) VALUES
+(1, 971, '2022-01-12 23:39:10'),
+(2, 971, '2022-01-12 23:46:43'),
+(3, 971, '2022-01-12 23:47:28'),
+(4, 971, '2022-01-12 23:48:15');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `clients`
 --
 
@@ -37,8 +59,21 @@ CREATE TABLE `clients` (
   `cellphone` varchar(10) NOT NULL,
   `emergency_contact` varchar(70) NOT NULL,
   `emergency_cellphone` varchar(10) NOT NULL,
-  `discipline` int(5) NOT NULL
+  `discipline` int(5) NOT NULL,
+  `inscription_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `payment_day` date NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `clients`
+--
+
+INSERT INTO `clients` (`client_id`, `name`, `ap_pat`, `ap_mat`, `birth_date`, `mail`, `cellphone`, `emergency_contact`, `emergency_cellphone`, `discipline`, `inscription_date`, `payment_day`, `status`) VALUES
+(275, 'Rocio Guadalupe', 'Hiriart', 'Ramirez', '1978-12-12', 'rocio_hiriart@gmail.com', '3141478546', 'Sebastian Ochoa', '3141162252', 6, '2022-01-06 06:00:00', '2022-01-12', 0),
+(971, 'Eduardo', 'Ochoa', 'Hiriart', '2002-12-30', 'lalo.8a@gmail.com', '3141162252', 'Rocio Hiriart Ramirez', '3141162252', 6, '2022-01-06 06:00:00', '2022-02-06', 1),
+(8223, 'Sebastian', 'Ochoa', 'Hiriart', '2000-12-05', 'sebastian.ochoa0512@gmail.com', '3141162252', 'Esly Alejandra Martinez', '3141164009', 6, '2022-01-06 06:00:00', '2022-02-06', 1),
+(8423, 'Esly Alejandra', 'Maritinez', 'Castillo', '2002-04-06', 'emartinez@ucol.mx', '3141164009', 'Sebastian Ochoa', '3141162252', 5, '2022-01-06 06:00:00', '2022-02-06', 1);
 
 -- --------------------------------------------------------
 
@@ -158,6 +193,13 @@ INSERT INTO `user_privilege` (`privilege_id`, `user_id`, `module_id`, `allow`) V
 --
 
 --
+-- Indices de la tabla `atendance`
+--
+ALTER TABLE `atendance`
+  ADD PRIMARY KEY (`atendance_id`),
+  ADD KEY `client_id` (`client_id`);
+
+--
 -- Indices de la tabla `clients`
 --
 ALTER TABLE `clients`
@@ -202,6 +244,12 @@ ALTER TABLE `user_privilege`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `atendance`
+--
+ALTER TABLE `atendance`
+  MODIFY `atendance_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `disciplines`
 --
 ALTER TABLE `disciplines`
@@ -234,6 +282,12 @@ ALTER TABLE `user_privilege`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `atendance`
+--
+ALTER TABLE `atendance`
+  ADD CONSTRAINT `atendance_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`);
 
 --
 -- Filtros para la tabla `clients`
