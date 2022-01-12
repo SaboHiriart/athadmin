@@ -16,14 +16,9 @@
 
     <div class="container mt-4">
         <div class="row justify-content-center align-items-end">
-            <div class="col-11 mb-4">
+            <div class="col-12 mb-4">
                 <label for="selNombreCliente" class="form-label">Cliente</label>
                 <select id="selNombreCliente" class="form-select" aria-describedby="nombreHelp"></select>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-primary" onclick="loadClientes()">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
             </div>
         </div>
         <div class="row justify-content-between">
@@ -60,9 +55,9 @@
         <div class="row justify-content-between mt-4">
             <div class="col-6">
                 <div class="mb-4">
-                    <label for="fecheCliente" class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="fechaCliente" aria-describedby="fechaHelp" min="">
-                    <div id="fechaHelp" class="form-text">Seleccione la fecha de nacimiento del cliente</div>
+                    <label for="fechaNaciemientoCliente" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaNacimientoCliente" aria-describedby="fechaNacimientoHelp" min="">
+                    <div id="fechaNacimientoHelp" class="form-text">Seleccione la fecha de nacimiento del cliente</div>
                 </div>
                 <div class="mb-4">
                     <label for="telefonoCliente" class="form-label">Tel&eacute;fono</label>
@@ -75,6 +70,11 @@
                     <input type="text" class="form-control" id="nombreEmergenciaCliente"
                         aria-describedby="nombreEmergenciaHelp">
                     <div id="nombreEmergenciaHelp" class="form-text">Ingrese el nombre del contacto de emergencia</div>
+                </div>
+                <div class="mb-4">
+                    <label for="fechaIngresoCliente" class="form-label">Fecha de Inscripción</label>
+                    <input type="date" class="form-control" id="fechaIngresoCliente" aria-describedby="fechaIngresoHelp" min="">
+                    <div id="fechaIngresoHelp" class="form-text">Seleccione la fecha de inscripción del cliente</div>
                 </div>
             </div>
             <div class="col-6">
@@ -94,6 +94,11 @@
                         aria-describedby="telefonoEmergenciaHelp">
                     <div id="telefonoEmergenciaHelp" class="form-text">Ingrese el número de contacto de emergencia (10
                         digitos)</div>
+                </div>
+                <div class="mb-4">
+                    <label for="fechaPagoCliente" class="form-label">Fecha de Pago</label>
+                    <input type="date" class="form-control" id="fechaPagoCliente" aria-describedby="fechaPagoHelp" min="">
+                    <div id="fechaPagoHelp" class="form-text">Seleccione la fecha de pago del cliente</div>
                 </div>
             </div>
         </div>
