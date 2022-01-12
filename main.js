@@ -38,7 +38,7 @@ function createMainWindow(){
     mainWindow.setTitle('Athadmin');
     mainWindow.maximize();
     //mainWindow.removeMenu();
-    mainWindow.loadFile(path.join(__dirname, 'view-main-test/index.html'));
+    mainWindow.loadFile(path.join(__dirname, 'view-main/index.html'));
 }
 
 app.whenReady().then(createLoginWindow);
