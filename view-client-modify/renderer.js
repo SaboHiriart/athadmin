@@ -6,7 +6,9 @@ const fs = require('fs');
 const nombreCliente = document.getElementById("nombreCliente");
 const apPatCliente = document.getElementById("apPatCliente");
 const apMatCliente = document.getElementById("apMatCliente");
-const fechaCliente = document.getElementById("fechaCliente");
+const fechaNacimeintoCliente = document.getElementById("fechaNacimientoCliente");
+const fechaIngresoCliente = document.getElementById("fechaIngresoCliente");
+const fechaPagoCliente = document.getElementById("fechaPagoCliente");
 const telefonoCliente = document.getElementById("telefonoCliente");
 const correoCliente = document.getElementById("correoCliente");
 const nombreEmergenciaCliente = document.getElementById(
@@ -39,7 +41,7 @@ function clearForm() {
   nombreCliente.value = "";
   apPatCliente.value = "";
   apMatCliente.value = "";
-  fechaCliente.value = "";
+  fechaNacimeintoCliente.value = "";
   correoCliente.value = "";
   telefonoCliente.value = "";
   disciplinaCliente.selectedIndex = 1;
@@ -99,21 +101,25 @@ function clearForm() {
 
 function loadClientInfo() {
   var sql =
-    "SELECT *, DATE_FORMAT(birth_date, '%Y/%m/%d') AS niceDate FROM clients WHERE client_id=" +
+    "SELECT *, DATE_FORMAT(birth_date, '%Y/%m/%d') AS BirthDate, DATE_FORMAT(inscription_date, '%Y/%m/%d') AS InscriptionDate, DATE_FORMAT(payment_day, '%Y/%m/%d') AS paymentDate  FROM clients WHERE client_id=" +
     selNombreCliente.value;
   db.query(sql, function (error, result, fields) {
     if (error) throw error;
-    var date = new Date(result[0].niceDate);
+    var dateBirthDate = new Date(result[0].BirthDate);
+    var dateIncreiptionDate = new Date(result[0].InscriptionDate);
+    var datePaymentDate = new Date(result[0].paymentDate)
     identificadorCliente = result[0].client_id;
     nombreCliente.value = result[0].name;
     apPatCliente.value = result[0].ap_pat;
     apMatCliente.value = result[0].ap_mat;
-    fechaCliente.value = date.toISOString().substring(0,10);
+    fechaNacimientoCliente.value = dateBirthDate.toISOString().substring(0,10);
+    fechaIngresoCliente.value = dateIncreiptionDate.toISOString().substring(0,10);
+    fechaPagoCliente.value = datePaymentDate.toISOString().substring(0,10);
     telefonoCliente.value = result[0].cellphone;
     nombreEmergenciaCliente.value = result[0].emergency_contact;
     telefonoEmergenciaCliente.value = result[0].emergency_cellphone;
     correoCliente.value = result[0].mail;
-    disciplinaCliente.selectedIndex = result[0].discipline;
+    disciplinaCliente.selectedIndex = result[0].discipline - 1;
     try {
       imgCliente.src = "../assets/clientsPics/" + result[0].client_id + ".jpg";
     } catch {
