@@ -37,15 +37,24 @@ function comprobarStatus (client_id) {
     var sql = "SELECT DATE_FORMAT(payment_day, '%Y/%m/%d') as payment_day FROM clients WHERE client_id = " + client_id;
     db.query(sql, function (err, result, fields) { 
         if(err) throw err;
-        var date = new Date(result[0].payment_day)
-        console.log(result[0].payment_day);
-        console.log(result[0].payment_day --);
+        var fechaDeHoy = new Date();
+        var fechaDePago = new Date(result[0].payment_day);
+        if(fechaDeHoy.getFullYear() <= fechaDePago.getFullYear()){
+            
+        }
     });
+}
+
+function limpiarFormulario() {
+    inputIdCliente.value = "";
+    fotoCliente.src = "";
+    mensajeIngreso.innerHTML = "";
 }
 
 inputIdCliente.addEventListener("keypress", function(event) {
     if (event.keyCode === 13){
         event.preventDefault();
+        comprobarStatus(inputIdCliente.value);
         var sql = "SELECT * FROM clients WHERE client_id = " + inputIdCliente.value;
         db.query(sql, function(err, result, fields){
             if(err) throw err;
@@ -60,7 +69,6 @@ inputIdCliente.addEventListener("keypress", function(event) {
                     db.query(sql, function(err, results, fields){
                         if(err) throw err;
                         mensajeIngreso.innerHTML = '<div class="alert alert-success text-center" role="alert">Asistencia Registrada</div>';
-                        comprobarStatus(inputIdCliente.value);
                     })
                 }
             }
