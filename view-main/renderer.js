@@ -1,11 +1,16 @@
 const path = require('path');
 const db = require('../database');
+const { ipcRenderer } = require("electron");
 
 const areaDesplegadoTabs = document.getElementById("areaTab");
 
 window.onload = function () {
   cambiarDeTab("view-atendance");
   actualizarStatusClientes();
+}
+
+function cerrarSesion(){
+  ipcRenderer.invoke("logOut");
 }
 
 function actualizarStatusClientes(){
