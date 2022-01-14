@@ -145,7 +145,11 @@ disciplinaCliente.onchange = function () {
         status +
         "</td><td><button class='btn btn-danger' onclick='deleteClient(" +
         result[i].client_id +
-        ")'><i class='fas fa-trash'></i></button></td></tr>";
+        ")'><i class='fas fa-trash'></i></button>" + 
+        "<button class='btn btn-success' onclick='renovarMembresia(" + 
+        + result[i].client_id +
+        "')><i class='fas fa-money-bill-wave'></button></td>" + 
+        "</tr>";
     }
     });
   }
