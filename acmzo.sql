@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-01-2022 a las 17:55:22
+-- Tiempo de generación: 14-01-2022 a las 17:45:37
 -- Versión del servidor: 10.6.5-MariaDB-1:10.6.5+maria~buster
 -- Versión de PHP: 7.4.25
 
@@ -38,10 +38,9 @@ CREATE TABLE `atendance` (
 --
 
 INSERT INTO `atendance` (`atendance_id`, `client_id`, `atendance_date`) VALUES
-(1, 971, '2022-01-12 23:39:10'),
-(2, 971, '2022-01-12 23:46:43'),
-(3, 971, '2022-01-12 23:47:28'),
-(4, 971, '2022-01-12 23:48:15');
+(1, 971, '2022-01-14 18:42:19'),
+(2, 971, '2022-01-14 18:43:44'),
+(3, 971, '2022-01-14 18:46:57');
 
 -- --------------------------------------------------------
 
@@ -70,9 +69,9 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`client_id`, `name`, `ap_pat`, `ap_mat`, `birth_date`, `mail`, `cellphone`, `emergency_contact`, `emergency_cellphone`, `discipline`, `inscription_date`, `payment_day`, `status`) VALUES
-(275, 'Rocio Guadalupe', 'Hiriart', 'Ramirez', '1978-12-12', 'rocio_hiriart@gmail.com', '3141478546', 'Sebastian Ochoa', '3141162252', 6, '2022-01-06 06:00:00', '2022-01-12', 0),
+(275, 'Rocio Guadalupe', 'Hiriart', 'Ramirez', '1978-12-12', 'rocio_hiriart@gmail.com', '3141478546', 'Sebastian Ochoa', '3141162252', 6, '2022-01-06 06:00:00', '2022-02-14', 1),
 (971, 'Eduardo', 'Ochoa', 'Hiriart', '2002-12-30', 'lalo.8a@gmail.com', '3141162252', 'Rocio Hiriart Ramirez', '3141162252', 6, '2022-01-06 06:00:00', '2022-02-06', 1),
-(8223, 'Sebastian', 'Ochoa', 'Hiriart', '2000-12-05', 'sebastian.ochoa0512@gmail.com', '3141162252', 'Esly Alejandra Martinez', '3141164009', 6, '2022-01-06 06:00:00', '2022-02-06', 1),
+(8223, 'Sebastian', 'Ochoa', 'Hiriart', '2000-12-05', 'sebastian.ochoa0512@gmail.com', '3141162252', 'Esly Alejandra Martinez', '3141164009', 6, '2022-01-06 06:00:00', '2022-01-01', 0),
 (8423, 'Esly Alejandra', 'Maritinez', 'Castillo', '2002-04-06', 'emartinez@ucol.mx', '3141164009', 'Sebastian Ochoa', '3141162252', 5, '2022-01-06 06:00:00', '2022-02-06', 1);
 
 -- --------------------------------------------------------
@@ -86,20 +85,21 @@ CREATE TABLE `disciplines` (
   `name` varchar(50) NOT NULL,
   `schedule_day` varchar(50) NOT NULL,
   `schedule_time` time NOT NULL,
-  `instructor` int(5) NOT NULL
+  `instructor` int(5) NOT NULL,
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `disciplines`
 --
 
-INSERT INTO `disciplines` (`discipline_id`, `name`, `schedule_day`, `schedule_time`, `instructor`) VALUES
-(1, 'Flexor Stretching ', 'Lunes - Viernes', '07:00:00', 1),
-(2, 'Flexor Stretching', 'Lunes - Viernes', '08:00:00', 1),
-(3, 'Flexor Stretching ', 'Lunes - Viernes', '09:00:00', 1),
-(4, 'Flexor Stretching ', 'Lunes - Viernes', '18:00:00', 1),
-(5, 'Flexor Stretching ', 'Lunes - Viernes', '19:00:00', 1),
-(6, 'Flexor Stretching ', 'Lunes - Viernes', '20:00:00', 1);
+INSERT INTO `disciplines` (`discipline_id`, `name`, `schedule_day`, `schedule_time`, `instructor`, `price`) VALUES
+(1, 'Flexor Stretching ', 'Lunes - Viernes', '07:00:00', 1, 499.99),
+(2, 'Flexor Stretching', 'Lunes - Viernes', '08:00:00', 1, 499.99),
+(3, 'Flexor Stretching ', 'Lunes - Viernes', '09:00:00', 1, 499.99),
+(4, 'Flexor Stretching ', 'Lunes - Viernes', '18:00:00', 1, 499.99),
+(5, 'Flexor Stretching ', 'Lunes - Viernes', '19:00:00', 1, 499.99),
+(6, 'Flexor Stretching ', 'Lunes - Viernes', '20:00:00', 1, 499.99);
 
 -- --------------------------------------------------------
 
@@ -247,7 +247,7 @@ ALTER TABLE `user_privilege`
 -- AUTO_INCREMENT de la tabla `atendance`
 --
 ALTER TABLE `atendance`
-  MODIFY `atendance_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `atendance_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `disciplines`
