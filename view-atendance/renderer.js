@@ -33,8 +33,6 @@ function showTime() {
 
 function limpiarFormulario() {
   inputIdCliente.value = "";
-  fotoCliente.src = "";
-  mensajeIngreso.innerHTML = "";
 }
 
 inputIdCliente.addEventListener("keypress", function (event) {
@@ -44,6 +42,8 @@ inputIdCliente.addEventListener("keypress", function (event) {
         if (err) throw err;
         if(result.length === 0){
             mensajeIngreso.innerHTML = '<div class="alert alert-warning text-center" role="alert">No se encontró el cliente</div>';
+            fotoCliente.src="../assets/profilePics/profileMain.png";
+            limpiarFormulario()
         }else{
             var fechaDeHoy = new Date;
             fechaDeHoy.setHours(0,0,0,0);
@@ -51,12 +51,19 @@ inputIdCliente.addEventListener("keypress", function (event) {
             console.log(fechaDeHoy);
             console.log(fechaDePago);
             if(fechaDeHoy < fechaDePago){
-              mensajeIngreso.innerHTML = '<div class="alert alert-success text-center" role="alert">Asistencia Registrada</div>';
+              var sqlInsertAttendance = "INSERT INTO atendance (client_id) VALUES (" + inputIdCliente.value + ")";
+              db.query(sqlInsertAttendance, function (err, result) { 
+                fotoCliente.src = "../assets/clientsPics/" + inputIdCliente.value + ".jpg";
+                mensajeIngreso.innerHTML = '<div class="alert alert-success text-center" role="alert">Asistencia Registrada</div>';
+                limpiarFormulario();
+              });
             }else {
               var sqlUpdateSatus = "UPDATE clients SET status=0 WHERE client_id=" + inputIdCliente.value;
               db.query(sqlUpdateSatus, function(err, result, fields) {
                 if (err) throw err;
                 mensajeIngreso.innerHTML = '<div class="alert alert-danger text-center" role="alert">Membresía Vencida</div>';
+                fotoCliente.src = "../assets/clientsPics/" + inputIdCliente.value + ".jpg";
+                limpiarFormulario();
               });
             }
         }
