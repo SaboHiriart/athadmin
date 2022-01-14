@@ -46,11 +46,14 @@ inputIdCliente.addEventListener("keypress", function (event) {
             mensajeIngreso.innerHTML = '<div class="alert alert-warning text-center" role="alert">No se encontró el cliente</div>';
         }else{
             var fechaDeHoy = new Date;
-            var fechaDePago = new Date;
-            if(fechaDePago > fechaDeHoy){
-                console.log("la membresía sigue vigente");
+            fechaDeHoy.setHours(0,0,0,0);
+            var fechaDePago = new Date(result[0].payment_day);
+            console.log(fechaDeHoy);
+            console.log(fechaDePago);
+            if(fechaDeHoy < fechaDePago){
+              console.log("la fecha de hoy es mayor o igual que la de pago");
             }else {
-                console.log("la membresía venció");
+              console.log("la fecha de pago es mayor que la de hoy")
             }
         }
     });

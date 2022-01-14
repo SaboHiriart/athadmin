@@ -2,7 +2,7 @@ const path = require('path')
 
 const areaDesplegadoTabs = document.getElementById("areaTab");
 
-window.onload(cambiarDeTab("view-atendance"));
+window.onload = cambiarDeTab("view-atendance");
 
 function cambiarDeTab(nombreDeTab) {
   var tabs = document.getElementsByClassName("nav-link");
