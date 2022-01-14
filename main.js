@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 
 let loginWindow;
@@ -69,4 +69,9 @@ ipcMain.handle('logOut', (event, obj) =>{
     createLoginWindow();
     loginWindow.show();
     mainWindow.close();
+});
+
+ipcMain.handle('openMessage', (event, obj) =>{
+    const window = BrowserWindow.getFocusedWindow();
+    dialog.showMessageBoxSync(window, obj);
 });
