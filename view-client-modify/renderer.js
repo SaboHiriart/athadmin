@@ -90,10 +90,12 @@ function clearForm() {
   nombreCliente.value = "";
   apPatCliente.value = "";
   apMatCliente.value = "";
-  fechaCliente.value = "";
+  fechaNacimeintoCliente.value="";
+  fechaIngresoCliente.value = "";
+  fechaPagoCliente.value = "";
   correoCliente.value = "";
   telefonoCliente.value = "";
-  disciplinaCliente.selectedIndex = 1;
+  disciplinaCliente.selectedIndex = 0;
   telefonoEmergenciaCliente.value = "";
   nombreEmergenciaCliente.value = "";
   imgCliente.src = "../assets/clientsPics/0.png";
@@ -137,7 +139,7 @@ function updateClient() {
     "', ap_mat='" +
     apMatCliente.value +
     "', birth_date='" + 
-    fechaCliente.value +
+    fechaNacimientoCliente.value +
     "', mail='" +
     correoCliente.value +
     "', cellphone='" +
@@ -148,7 +150,11 @@ function updateClient() {
     telefonoEmergenciaCliente.value +
     "', discipline=" +
     disciplinaCliente.value + 
-    " WHERE client_id=" + identificadorCliente;
+    ", inscription_date='" +
+    fechaIngresoCliente.value +
+    "', payment_day='" +
+    fechaPagoCliente.value + 
+    "' WHERE client_id=" + identificadorCliente;
     db.query(sql, function (err, result) {
       if(err) throw err;
       console.log(result.affectedRows + "records(s) updated");
