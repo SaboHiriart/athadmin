@@ -11,6 +11,14 @@ const disciplinaCliente = document.getElementById("disciplinaCliente");
 
 var dataClients;
 
+function actualizarStatus(){
+  var sql = "UPDATE clients SET status=0 WHERE NOT NOW() < DATE(payment_day) AND status=1";
+  db.query(sql, function(err, result) {
+    if(err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
+}
+
 function loadClients() {
   cuerpoTabla.innerHTML = "";
   var sql =
@@ -120,6 +128,7 @@ function loadDisciplines() {
 window.onload = function () {
   loadClients();
   loadDisciplines();
+  actualizarStatus();
 };
 
 btnSearch.addEventListener("click", function () {
