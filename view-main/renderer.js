@@ -1,8 +1,20 @@
-const path = require('path')
+const path = require('path');
+const db = require('../database');
 
 const areaDesplegadoTabs = document.getElementById("areaTab");
 
-window.onload = cambiarDeTab("view-atendance");
+window.onload = function () {
+  cambiarDeTab("view-atendance");
+  actualizarStatusClientes();
+}
+
+function actualizarStatusClientes(){
+  var sql = "UPDATE clients SET status=0 WHERE NOT NOW() < DATE(payment_day)"
+  db.query(sql, function(err, result) {
+    if(err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
+}
 
 function cambiarDeTab(nombreDeTab) {
   var tabs = document.getElementsByClassName("nav-link");
