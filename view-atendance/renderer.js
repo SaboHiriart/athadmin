@@ -51,9 +51,13 @@ inputIdCliente.addEventListener("keypress", function (event) {
             console.log(fechaDeHoy);
             console.log(fechaDePago);
             if(fechaDeHoy < fechaDePago){
-              console.log("la fecha de hoy es mayor o igual que la de pago");
+              mensajeIngreso.innerHTML = '<div class="alert alert-success text-center" role="alert">Asistencia Registrada</div>';
             }else {
-              console.log("la fecha de pago es mayor que la de hoy")
+              var sqlUpdateSatus = "UPDATE clients SET status=0 WHERE client_id=" + inputIdCliente.value;
+              db.query(sqlUpdateSatus, function(err, result, fields) {
+                if (err) throw err;
+                mensajeIngreso.innerHTML = '<div class="alert alert-danger text-center" role="alert">Membresía Vencida</div>';
+              });
             }
         }
     });
