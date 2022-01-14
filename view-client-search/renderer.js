@@ -1,6 +1,7 @@
 const fs = require("fs");
 const db = require("../database");
 const path = require("path");
+const { ipcRenderer } = require("electron");
 
 const cuerpoTabla = document.getElementById("cuerpoTabla");
 const selectCampo = document.getElementById("campoBusqueda");
@@ -41,10 +42,10 @@ function loadClients() {
         status +
         "</td><td>" +
         "<button class='btn btn-success' onclick='renovarClient(" +
-        result[i].client_id + 
+        result[i].idCliente + 
         ")'><i class='fas fa-dollar-sign'></i></button>" +
-        "<button class='btn btn-danger' onclick='deleteClient(" +
-        result[i].client_id +
+        "<button class='btn btn-danger ml-1' onclick='deleteClient(" +
+        result[i].idCliente +
         ")'><i class='fas fa-trash'></i></button>" +
         "</td></tr>";
     }
@@ -62,6 +63,35 @@ function deleteClient(client_id) {
     loadClients();
     textoSearch.value = "";
     selectCampo.value = 0;
+  });
+}
+
+function renovarClient(client_id) { 
+  var sqlSelectDiscipline = "SELECT discipline FROM clients WHERE client_id=" + client_id;
+  db.query(sqlSelectDiscipline, function (err, result, fields) {
+    if(err) throw err;
+    var sqlSelectPrice = "SELECT price FROM disciplines WHERE discipline_id=" + result[0].discipline;
+    db.query(sqlSelectPrice, function (errDiscipline, resultDisciipline, fieldsDiscipline) {
+      if(errDiscipline) throw errDiscipline;
+      var mensajeAMostrar = "Cobre $" + resultDisciipline[0].price + " al cliente"
+      var mensaje = {
+        "title": 'Renovar Membresía',
+        "buttons": ['OK'],
+        "type": 'info',
+        "message": mensajeAMostrar,
+      }
+      ipcRenderer.invoke("openMessage", mensaje);
+      var fechaActual = new Date;
+      fechaActual.setMonth(fechaActual.getMonth() + 2);
+      var cadenaFehca = fechaActual.getFullYear() + "-" + fechaActual.getMonth() + "-" + fechaActual.getDate();
+      console.log(cadenaFehca)
+      var sqlRenovarMembresia = "UPDATE clients SET payment_day='" + cadenaFehca + "', status=1 WHERE client_id=" + client_id;
+      db.query(sqlRenovarMembresia, function(errUpdate, resultUpdate) {
+        if(errUpdate) throw errUpdate;
+        loadClients();
+        console.log(resultUpdate.affectedRows + " record(s) updated");
+      })
+    });
   });
 }
 
