@@ -158,20 +158,20 @@ function updateClient() {
     db.query(sql, function (err, result) {
       if(err) throw err;
       console.log(result.affectedRows + "records(s) updated");
-      let routeAddUser =
-      path.join(__dirname, "../assets/clientsPics/") + identificadorCliente + ".jpg";
-      var base64ImageAddUser = imgCliente.src;
-      base64ImageAddUser = base64ImageAddUser.split(";base64,").pop();
-      fs.writeFile(
-        routeAddUser,
-        base64ImageAddUser,
-        { encoding: "base64" },
-        function (err) {
-          selNombreCliente.selectedIndex = 0;
-          loadClientes();
-          clearForm();
-        }
-      );
+      //let routeAddUser =
+      //path.join(__dirname, "../assets/clientsPics/") + identificadorCliente + ".jpg";
+      //var base64ImageAddUser = imgCliente.src;
+      //base64ImageAddUser = base64ImageAddUser.split(";base64,").pop();
+      //fs.writeFile(
+        //routeAddUser,
+        //base64ImageAddUser,
+        //{ encoding: "base64" },
+        //function (err) {
+          //selNombreCliente.selectedIndex = 0;
+          //loadClientes();
+          //clearForm();
+        //}
+      //);
     });
 }
 
