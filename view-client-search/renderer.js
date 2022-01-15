@@ -96,8 +96,11 @@ function renovarClient(client_id) {
       var sqlRenovarMembresia = "UPDATE clients SET payment_day='" + cadenaFehca + "', status=1 WHERE client_id=" + client_id;
       db.query(sqlRenovarMembresia, function(errUpdate, resultUpdate) {
         if(errUpdate) throw errUpdate;
-        loadClients();
-        console.log(resultUpdate.affectedRows + " record(s) updated");
+        var sqlInsertPayment = "INSERT INTO payments (payment_concept, payment_amount, client_id) VALUES ('Pago de Membresía', " + resultDisciipline[0].price + ", " + client_id + ")"
+        db.query(sqlInsertPayment, function(err, result) {
+          loadClients();
+          console.log(resultUpdate.affectedRows + " record(s) updated");
+        });
       })
     });
   });
