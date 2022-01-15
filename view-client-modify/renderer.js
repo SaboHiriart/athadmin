@@ -168,8 +168,8 @@ function updateClient() {
         //{ encoding: "base64" },
         //function (err) {
           //selNombreCliente.selectedIndex = 0;
-          //loadClientes();
-          //clearForm();
+          loadClientes();
+          clearForm();
         //}
       //);
     });
