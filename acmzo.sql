@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 14-01-2022 a las 17:45:37
--- Versión del servidor: 10.6.5-MariaDB-1:10.6.5+maria~buster
--- Versión de PHP: 7.4.25
+-- Host: localhost:3306
+-- Generation Time: Jan 14, 2022 at 06:52 PM
+-- Server version: 10.3.31-MariaDB-0ubuntu0.20.04.1
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `acmzo`
+-- Database: `acmzo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `atendance`
+-- Table structure for table `atendance`
 --
 
 CREATE TABLE `atendance` (
@@ -34,7 +35,7 @@ CREATE TABLE `atendance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `atendance`
+-- Dumping data for table `atendance`
 --
 
 INSERT INTO `atendance` (`atendance_id`, `client_id`, `atendance_date`) VALUES
@@ -45,7 +46,7 @@ INSERT INTO `atendance` (`atendance_id`, `client_id`, `atendance_date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clients`
+-- Table structure for table `clients`
 --
 
 CREATE TABLE `clients` (
@@ -65,19 +66,19 @@ CREATE TABLE `clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `clients`
+-- Dumping data for table `clients`
 --
 
 INSERT INTO `clients` (`client_id`, `name`, `ap_pat`, `ap_mat`, `birth_date`, `mail`, `cellphone`, `emergency_contact`, `emergency_cellphone`, `discipline`, `inscription_date`, `payment_day`, `status`) VALUES
 (275, 'Rocio Guadalupe', 'Hiriart', 'Ramirez', '1978-12-12', 'rocio_hiriart@gmail.com', '3141478546', 'Sebastian Ochoa', '3141162252', 6, '2022-01-06 06:00:00', '2022-02-14', 1),
 (971, 'Eduardo', 'Ochoa', 'Hiriart', '2002-12-30', 'lalo.8a@gmail.com', '3141162252', 'Rocio Hiriart Ramirez', '3141162252', 6, '2022-01-06 06:00:00', '2022-02-06', 1),
-(8223, 'Sebastian', 'Ochoa', 'Hiriart', '2000-12-05', 'sebastian.ochoa0512@gmail.com', '3141162252', 'Esly Alejandra Martinez', '3141164009', 6, '2022-01-06 06:00:00', '2022-01-01', 0),
+(8223, 'Sebastian', 'Ochoa', 'Hiriart', '2000-12-05', 'sebastian.ochoa0512@gmail.com', '3141162252', 'Esly Alejandra Martinez', '3141164009', 6, '2022-01-06 06:00:00', '2022-02-14', 1),
 (8423, 'Esly Alejandra', 'Maritinez', 'Castillo', '2002-04-06', 'emartinez@ucol.mx', '3141164009', 'Sebastian Ochoa', '3141162252', 5, '2022-01-06 06:00:00', '2022-02-06', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `disciplines`
+-- Table structure for table `disciplines`
 --
 
 CREATE TABLE `disciplines` (
@@ -90,7 +91,7 @@ CREATE TABLE `disciplines` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `disciplines`
+-- Dumping data for table `disciplines`
 --
 
 INSERT INTO `disciplines` (`discipline_id`, `name`, `schedule_day`, `schedule_time`, `instructor`, `price`) VALUES
@@ -104,7 +105,7 @@ INSERT INTO `disciplines` (`discipline_id`, `name`, `schedule_day`, `schedule_ti
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `instructors`
+-- Table structure for table `instructors`
 --
 
 CREATE TABLE `instructors` (
@@ -114,7 +115,7 @@ CREATE TABLE `instructors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `instructors`
+-- Dumping data for table `instructors`
 --
 
 INSERT INTO `instructors` (`instructor_id`, `name`, `birth_date`) VALUES
@@ -123,7 +124,28 @@ INSERT INTO `instructors` (`instructor_id`, `name`, `birth_date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `program_modules`
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `payment_concept` varchar(70) NOT NULL,
+  `payment_amount` float NOT NULL,
+  `payement_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `client_id` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `payment_concept`, `payment_amount`, `payement_date`, `client_id`) VALUES
+(1, 'Pago de Membresía', 499.99, '2022-01-15 00:52:01', 275);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_modules`
 --
 
 CREATE TABLE `program_modules` (
@@ -133,7 +155,7 @@ CREATE TABLE `program_modules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `program_modules`
+-- Dumping data for table `program_modules`
 --
 
 INSERT INTO `program_modules` (`module_id`, `module_name`, `module_status`) VALUES
@@ -145,7 +167,7 @@ INSERT INTO `program_modules` (`module_id`, `module_name`, `module_status`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -156,7 +178,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `name`, `user`, `password`) VALUES
@@ -168,7 +190,7 @@ INSERT INTO `users` (`user_id`, `name`, `user`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user_privilege`
+-- Table structure for table `user_privilege`
 --
 
 CREATE TABLE `user_privilege` (
@@ -179,7 +201,7 @@ CREATE TABLE `user_privilege` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `user_privilege`
+-- Dumping data for table `user_privilege`
 --
 
 INSERT INTO `user_privilege` (`privilege_id`, `user_id`, `module_id`, `allow`) VALUES
@@ -189,50 +211,57 @@ INSERT INTO `user_privilege` (`privilege_id`, `user_id`, `module_id`, `allow`) V
 (4, 1, 4, 1);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `atendance`
+-- Indexes for table `atendance`
 --
 ALTER TABLE `atendance`
   ADD PRIMARY KEY (`atendance_id`),
   ADD KEY `client_id` (`client_id`);
 
 --
--- Indices de la tabla `clients`
+-- Indexes for table `clients`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`client_id`),
   ADD KEY `discipline` (`discipline`);
 
 --
--- Indices de la tabla `disciplines`
+-- Indexes for table `disciplines`
 --
 ALTER TABLE `disciplines`
   ADD PRIMARY KEY (`discipline_id`),
   ADD KEY `instructor` (`instructor`);
 
 --
--- Indices de la tabla `instructors`
+-- Indexes for table `instructors`
 --
 ALTER TABLE `instructors`
   ADD PRIMARY KEY (`instructor_id`);
 
 --
--- Indices de la tabla `program_modules`
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `client_id` (`client_id`);
+
+--
+-- Indexes for table `program_modules`
 --
 ALTER TABLE `program_modules`
   ADD PRIMARY KEY (`module_id`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indices de la tabla `user_privilege`
+-- Indexes for table `user_privilege`
 --
 ALTER TABLE `user_privilege`
   ADD PRIMARY KEY (`privilege_id`),
@@ -240,69 +269,81 @@ ALTER TABLE `user_privilege`
   ADD KEY `module_id` (`module_id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `atendance`
+-- AUTO_INCREMENT for table `atendance`
 --
 ALTER TABLE `atendance`
   MODIFY `atendance_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `disciplines`
+-- AUTO_INCREMENT for table `disciplines`
 --
 ALTER TABLE `disciplines`
   MODIFY `discipline_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `instructors`
+-- AUTO_INCREMENT for table `instructors`
 --
 ALTER TABLE `instructors`
   MODIFY `instructor_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `program_modules`
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `program_modules`
 --
 ALTER TABLE `program_modules`
   MODIFY `module_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `user_privilege`
+-- AUTO_INCREMENT for table `user_privilege`
 --
 ALTER TABLE `user_privilege`
   MODIFY `privilege_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `atendance`
+-- Constraints for table `atendance`
 --
 ALTER TABLE `atendance`
   ADD CONSTRAINT `atendance_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`);
 
 --
--- Filtros para la tabla `clients`
+-- Constraints for table `clients`
 --
 ALTER TABLE `clients`
   ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`discipline`) REFERENCES `disciplines` (`discipline_id`);
 
 --
--- Filtros para la tabla `disciplines`
+-- Constraints for table `disciplines`
 --
 ALTER TABLE `disciplines`
   ADD CONSTRAINT `disciplines_ibfk_1` FOREIGN KEY (`instructor`) REFERENCES `instructors` (`instructor_id`);
 
 --
--- Filtros para la tabla `user_privilege`
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`);
+
+--
+-- Constraints for table `user_privilege`
 --
 ALTER TABLE `user_privilege`
   ADD CONSTRAINT `user_privilege_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
